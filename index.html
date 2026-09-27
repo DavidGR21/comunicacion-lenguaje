@@ -144,6 +144,17 @@
     padding:6px 0 6px 18px;margin:14px 0;
     font-style:italic;color:var(--ink);
   }
+  .analisis-oracion{margin:18px 0 28px;}
+  .oracion-completa{
+    border-left:2px solid var(--wine);padding:10px 0 10px 18px;
+    margin:0 0 14px;font-family:'Fraunces',serif;font-size:20px;
+    color:var(--ink);
+  }
+  .desglose-oracion{display:grid;grid-template-columns:repeat(3,1fr);gap:2px;background:var(--line);}
+  .parte-oracion{background:var(--paper);padding:13px 15px;}
+  .parte-oracion strong{display:block;font-family:'Fraunces',serif;font-size:16px;margin-bottom:3px;color:var(--wine);}
+  .parte-oracion span{font-size:14px;color:var(--ink-soft);}
+  @media(max-width:640px){.desglose-oracion{grid-template-columns:1fr;gap:1px;}}
   .lista-elementos{list-style:none;margin:0;padding:0;}
   .lista-elementos li{
     padding:10px 0;border-top:1px solid var(--line);
@@ -166,20 +177,38 @@
 
   /* ACTIVIDADES */
   .actividad{
-    border:1px solid var(--line);border-radius:2px;padding:20px 22px;margin-bottom:14px;
+    border:1px solid var(--line);border-radius:2px;padding:24px 22px;margin-bottom:16px;
     background:var(--paper-soft);
   }
-  .actividad button{
-    all:unset;cursor:pointer;display:flex;justify-content:space-between;width:100%;
-    font-family:'Fraunces',serif;font-size:17px;color:var(--ink);font-weight:500;
+  .actividad h3{font-size:21px;margin:0 0 6px;font-weight:600;
   }
-  .actividad button::after{content:"+";color:var(--accent);font-size:20px;transition:transform .25s;}
-  .actividad.open button::after{transform:rotate(45deg);}
-  .actividad .resp{
-    max-height:0;overflow:hidden;transition:max-height .3s ease;
-    font-size:15px;color:var(--ink-soft);
+  .actividad-intro{margin:0 0 18px;font-size:15px;color:var(--ink-soft);}
+  .actividad-status{min-height:25px;margin:16px 0 0;font-size:14px;font-weight:600;color:var(--wine);}
+  .actividad-status.ok{color:#3f6947;}
+  .relacion-contenedor{position:relative;display:grid;grid-template-columns:1fr 1fr;gap:46px;align-items:start;}
+  .relacion-columna{display:grid;gap:10px;position:relative;z-index:1;}
+  .opcion-actividad,.respuesta-actividad,.vf-opcion,.seleccion-opcion{
+    border:1px solid var(--line);background:var(--paper);color:var(--ink);font:500 15px/1.4 'Inter',sans-serif;
+    cursor:pointer;padding:11px 13px;text-align:left;transition:border-color .2s,background .2s,transform .2s;
   }
-  .actividad.open .resp{max-height:220px;margin-top:12px;}
+  .opcion-actividad:hover,.respuesta-actividad:hover,.vf-opcion:hover,.seleccion-opcion:hover{border-color:var(--accent);transform:translateY(-1px);}
+  .opcion-actividad.seleccionado,.respuesta-actividad.seleccionado{border-color:var(--accent);background:#f0e3cb;}
+  .opcion-actividad.correcto,.respuesta-actividad.correcto{border-color:#6d9b74;background:#e6f0e5;}
+  .opcion-actividad.incorrecto,.respuesta-actividad.incorrecto{border-color:var(--wine);background:#f2e2df;}
+  .lineas-relacion{position:absolute;inset:0;width:100%;height:100%;pointer-events:none;overflow:visible;}
+  .linea-relacion{stroke:var(--accent);stroke-width:2;stroke-linecap:round;opacity:.75;}
+  .vf-grupo,.seleccion-grupo{display:grid;gap:14px;}
+  .funcion-grupo,.clasificacion-grupo{display:grid;gap:16px;}
+  .funcion-item,.clasificacion-item{padding-bottom:14px;border-bottom:1px solid var(--line);}
+  .funcion-item:last-child,.clasificacion-item:last-child{padding-bottom:0;border-bottom:none;}
+  .clasificacion-ejemplo{margin:0;color:var(--ink);font-family:'Fraunces',serif;font-size:18px;}
+  .vf-enunciado{margin:0;color:var(--ink);font-family:'Fraunces',serif;font-size:18px;}
+  .vf-botones{display:flex;gap:10px;flex-wrap:wrap;}
+  .vf-opcion,.seleccion-opcion{width:max-content;min-width:110px;text-align:center;}
+  .vf-opcion.correcto,.seleccion-opcion.correcto{border-color:#6d9b74;background:#e6f0e5;}
+  .vf-opcion.incorrecto,.seleccion-opcion.incorrecto{border-color:var(--wine);background:#f2e2df;}
+  .seleccion-opcion{width:100%;text-align:left;}
+  @media(max-width:640px){.relacion-contenedor{gap:12px;}.opcion-actividad,.respuesta-actividad{font-size:13px;padding:10px 9px;}}
 
   /* GALERÍA */
   .galeria-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:2px;background:var(--line);}
@@ -345,8 +374,8 @@
         <svg class="icono revela" viewBox="0 0 40 40" fill="none" stroke="currentColor" stroke-width="1.4"><circle cx="20" cy="20" r="14"/><circle cx="20" cy="6" r="1.7" fill="currentColor" stroke="none"/><circle cx="20" cy="34" r="1.7" fill="currentColor" stroke="none"/><circle cx="6" cy="20" r="1.7" fill="currentColor" stroke="none"/><circle cx="34" cy="20" r="1.7" fill="currentColor" stroke="none"/><circle cx="10.1" cy="10.1" r="1.7" fill="currentColor" stroke="none"/><circle cx="29.9" cy="29.9" r="1.7" fill="currentColor" stroke="none"/></svg>
         <div class="video-marco revela">
           <span class="etiqueta">Video · Funciones del lenguaje</span>
-          <div class="video-caja"><iframe src="https://www.youtube-nocookie.com/embed/a2EnTf5NISo?rel=0" title="Funciones del lenguaje" loading="lazy" allowfullscreen></iframe></div>
-          <a class="ver-youtube" href="https://www.youtube.com/watch?v=a2EnTf5NISo" target="_blank" rel="noopener">Ver en YouTube</a>
+          <div class="video-caja"><iframe src="https://www.youtube-nocookie.com/embed/UJxSAq54HkA?rel=0" title="Funciones del lenguaje" loading="lazy" allowfullscreen></iframe></div>
+          <a class="ver-youtube" href="https://www.youtube.com/watch?v=UJxSAq54HkA" target="_blank" rel="noopener">Ver en YouTube</a>
         </div>
 
         <p class="sub bloque-sub">Referencial</p>
@@ -375,12 +404,20 @@
         <svg class="icono revela" viewBox="0 0 40 40" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M4 14h11M4 14v9M15 14v9"/><path d="M23 14h13M23 14v9M36 14v9"/></svg>
         <div class="video-marco revela">
           <span class="etiqueta">Video · Morfosintaxis</span>
-          <div class="video-caja"><iframe src="https://www.youtube-nocookie.com/embed/sDiPYVmoVf8?rel=0" title="Morfosintaxis" loading="lazy" allowfullscreen></iframe></div>
-          <a class="ver-youtube" href="https://www.youtube.com/watch?v=sDiPYVmoVf8" target="_blank" rel="noopener">Ver en YouTube</a>
+          <div class="video-caja"><iframe src="https://www.youtube-nocookie.com/embed/AWajLj-f66w?rel=0" title="Morfosintaxis" loading="lazy" allowfullscreen></iframe></div>
+          <a class="ver-youtube" href="https://www.youtube.com/watch?v=AWajLj-f66w" target="_blank" rel="noopener">Ver en YouTube</a>
         </div>
 
         <p class="sub bloque-sub">Morfología</p>
-        <p>Estudia la estructura y formación de las palabras. <span class="ejemplo">Los estudiantes responsables</span> — los (artículo), estudiantes (sustantivo), responsables (adjetivo).</p>
+        <p>Estudia la estructura y formación de las palabras:</p>
+        <div class="analisis-oracion">
+          <p class="oracion-completa">Los estudiantes responsables.</p>
+          <div class="desglose-oracion">
+            <div class="parte-oracion"><strong>Los</strong><span>Artículo</span></div>
+            <div class="parte-oracion"><strong>estudiantes</strong><span>Sustantivo</span></div>
+            <div class="parte-oracion"><strong>responsables</strong><span>Adjetivo</span></div>
+          </div>
+        </div>
 
         <p class="sub bloque-sub">La oración</p>
         <p>Estructura formada por palabras organizadas que expresa una idea completa.</p>
@@ -391,7 +428,15 @@
         </div>
 
         <p class="sub bloque-sub">Sintaxis</p>
-        <p>Estudia cómo se organizan las palabras para formar oraciones con sentido. <span class="ejemplo">Los estudiantes realizan su tarea</span> — sujeto: los estudiantes; predicado: realizan su tarea; verbo: realizan.</p>
+        <p>Estudia cómo se organizan las palabras para formar oraciones con sentido:</p>
+        <div class="analisis-oracion">
+          <p class="oracion-completa">Los estudiantes realizan su tarea.</p>
+          <div class="desglose-oracion">
+            <div class="parte-oracion"><strong>Sujeto</strong><span>Los estudiantes</span></div>
+            <div class="parte-oracion"><strong>Predicado</strong><span>realizan su tarea</span></div>
+            <div class="parte-oracion"><strong>Verbo</strong><span>realizan</span></div>
+          </div>
+        </div>
         <svg class="icono vino revela" viewBox="0 0 40 40" fill="none" stroke="currentColor" stroke-width="1.4"><circle cx="8" cy="10" r="2.4"/><circle cx="20" cy="27" r="2.4"/><circle cx="32" cy="10" r="2.4"/><path d="M8 12.4L20 24.6M32 12.4L20 24.6"/></svg>
         <div class="video-marco revela">
           <span class="etiqueta">Video · Sintaxis</span>
@@ -403,8 +448,8 @@
         <p>La gramática reúne las normas que permiten usar correctamente una lengua. Los signos de puntuación — punto, coma, punto y coma, dos puntos, interrogación, exclamación, comillas — organizan las ideas y facilitan la comprensión.</p>
         <div class="video-marco revela">
           <span class="etiqueta">Video · Gramática</span>
-          <div class="video-caja"><iframe src="https://www.youtube-nocookie.com/embed/H00AWdqEXsc?rel=0" title="Gramática" loading="lazy" allowfullscreen></iframe></div>
-          <a class="ver-youtube" href="https://www.youtube.com/watch?v=H00AWdqEXsc" target="_blank" rel="noopener">Ver en YouTube</a>
+          <div class="video-caja"><iframe src="https://www.youtube-nocookie.com/embed/EsNNVdIKzbI?rel=0" title="Gramática" loading="lazy" allowfullscreen></iframe></div>
+          <a class="ver-youtube" href="https://www.youtube.com/watch?v=EsNNVdIKzbI" target="_blank" rel="noopener">Ver en YouTube</a>
         </div>
       </div>
     </div>
@@ -464,8 +509,8 @@
     <p class="intro-lead revela">Síntesis, resumen y paráfrasis: tres herramientas para procesar lo que leemos y comunicarlo con nuestras propias palabras.</p>
     <div class="video-marco revela" style="max-width:640px;">
       <span class="etiqueta">Podcast · Síntesis, resumen y paráfrasis</span>
-      <div class="video-caja"><iframe src="https://www.youtube-nocookie.com/embed/j7yfz0wXFn0?rel=0" title="Síntesis, resumen y paráfrasis" loading="lazy" allowfullscreen></iframe></div>
-          <a class="ver-youtube" href="https://www.youtube.com/watch?v=j7yfz0wXFn0" target="_blank" rel="noopener">Ver en YouTube</a>
+      <div class="video-caja"><iframe src="https://www.youtube-nocookie.com/embed/jz0TUd1W97Y?rel=0" title="Síntesis, resumen y paráfrasis" loading="lazy" allowfullscreen></iframe></div>
+          <a class="ver-youtube" href="https://www.youtube.com/watch?v=jz0TUd1W97Y" target="_blank" rel="noopener">Ver en YouTube</a>
         </div>
   </section>
 
@@ -473,17 +518,69 @@
     <p class="kicker revela">Práctica</p>
     <h2 class="titulo revela">Actividades</h2>
 
-    <div class="actividad">
-      <button>1 · Relaciona los elementos de la comunicación</button>
-      <div class="resp">Emisor → persona que transmite el mensaje · Receptor → persona que lo recibe · Mensaje → información transmitida · Canal → medio utilizado para transmitir.</div>
+    <div class="actividad revela">
+      <h3>1 · Une los elementos de la comunicación</h3>
+      <p class="actividad-intro">Selecciona un elemento de la izquierda y después su definición.</p>
+      <div class="relacion-contenedor" data-relacion>
+        <div class="relacion-columna relacion-izquierda">
+          <button class="opcion-actividad" data-pareja="emisor">Emisor</button>
+          <button class="opcion-actividad" data-pareja="receptor">Receptor</button>
+          <button class="opcion-actividad" data-pareja="mensaje">Mensaje</button>
+          <button class="opcion-actividad" data-pareja="canal">Canal</button>
+        </div>
+        <div class="relacion-columna relacion-derecha">
+          <button class="respuesta-actividad" data-pareja="mensaje">Información transmitida</button>
+          <button class="respuesta-actividad" data-pareja="canal">Medio utilizado para transmitir</button>
+          <button class="respuesta-actividad" data-pareja="emisor">Persona que transmite el mensaje</button>
+          <button class="respuesta-actividad" data-pareja="receptor">Persona que recibe el mensaje</button>
+        </div>
+        <svg class="lineas-relacion" aria-hidden="true"></svg>
+      </div>
+      <p class="actividad-status" data-estado></p>
     </div>
-    <div class="actividad">
-      <button>2 · Identifica la función del lenguaje</button>
-      <div class="resp">«Por favor, entrega el trabajo mañana» → Apelativa · «Estoy muy contenta con mi calificación» → Emotiva · «¿Puedes escucharme?» → Fática.</div>
+
+    <div class="actividad revela">
+      <h3>2 · Funciones del lenguaje</h3>
+      <p class="actividad-intro">Lee cada oración y selecciona la función que cumple.</p>
+      <div class="funcion-grupo" data-funciones>
+        <div class="funcion-item" data-correcta="apelativa">
+          <p class="vf-enunciado">«Por favor, entrega el trabajo mañana.»</p>
+          <div class="vf-botones"><button class="vf-opcion" data-respuesta="referencial">Referencial</button><button class="vf-opcion" data-respuesta="apelativa">Apelativa</button><button class="vf-opcion" data-respuesta="emotiva">Emotiva</button><button class="vf-opcion" data-respuesta="fática">Fática</button></div>
+        </div>
+        <div class="funcion-item" data-correcta="emotiva">
+          <p class="vf-enunciado">«Estoy muy contenta con mi calificación.»</p>
+          <div class="vf-botones"><button class="vf-opcion" data-respuesta="referencial">Referencial</button><button class="vf-opcion" data-respuesta="apelativa">Apelativa</button><button class="vf-opcion" data-respuesta="emotiva">Emotiva</button><button class="vf-opcion" data-respuesta="fática">Fática</button></div>
+        </div>
+        <div class="funcion-item" data-correcta="fática">
+          <p class="vf-enunciado">«¿Puedes escucharme?»</p>
+          <div class="vf-botones"><button class="vf-opcion" data-respuesta="referencial">Referencial</button><button class="vf-opcion" data-respuesta="apelativa">Apelativa</button><button class="vf-opcion" data-respuesta="emotiva">Emotiva</button><button class="vf-opcion" data-respuesta="fática">Fática</button></div>
+        </div>
+      </div>
+      <p class="actividad-status" data-estado></p>
     </div>
-    <div class="actividad">
-      <button>3 · Clasifica: lenguaje oral o escrito</button>
-      <div class="resp">Una exposición → oral · Un ensayo → escrito · Una entrevista → oral · Un informe → escrito.</div>
+
+    <div class="actividad revela">
+      <h3>3 · Lenguaje verbal</h3>
+      <p class="actividad-intro">Clasifica cada ejemplo como lenguaje oral o escrito.</p>
+      <div class="clasificacion-grupo" data-clasificacion>
+        <div class="clasificacion-item" data-correcta="oral">
+          <p class="clasificacion-ejemplo">Una exposición</p>
+          <div class="vf-botones"><button class="vf-opcion" data-respuesta="oral">Lenguaje oral</button><button class="vf-opcion" data-respuesta="escrito">Lenguaje escrito</button></div>
+        </div>
+        <div class="clasificacion-item" data-correcta="escrito">
+          <p class="clasificacion-ejemplo">Un ensayo</p>
+          <div class="vf-botones"><button class="vf-opcion" data-respuesta="oral">Lenguaje oral</button><button class="vf-opcion" data-respuesta="escrito">Lenguaje escrito</button></div>
+        </div>
+        <div class="clasificacion-item" data-correcta="oral">
+          <p class="clasificacion-ejemplo">Una entrevista</p>
+          <div class="vf-botones"><button class="vf-opcion" data-respuesta="oral">Lenguaje oral</button><button class="vf-opcion" data-respuesta="escrito">Lenguaje escrito</button></div>
+        </div>
+        <div class="clasificacion-item" data-correcta="escrito">
+          <p class="clasificacion-ejemplo">Un informe</p>
+          <div class="vf-botones"><button class="vf-opcion" data-respuesta="oral">Lenguaje oral</button><button class="vf-opcion" data-respuesta="escrito">Lenguaje escrito</button></div>
+        </div>
+      </div>
+      <p class="actividad-status" data-estado></p>
     </div>
   </section>
 
@@ -544,9 +641,64 @@
   }, {rootMargin:'-45% 0px -50% 0px'});
   sections.forEach(s => secObserver.observe(s));
 
-  // actividades accordion
-  document.querySelectorAll('.actividad button').forEach(btn => {
-    btn.addEventListener('click', () => btn.parentElement.classList.toggle('open'));
+  // actividades interactivas
+  document.querySelectorAll('[data-relacion]').forEach(actividad => {
+    let seleccionado = null;
+    const lineas = actividad.querySelector('.lineas-relacion');
+    const estado = actividad.parentElement.querySelector('[data-estado]');
+    const actualizarLinea = (izquierda, derecha) => {
+      const origen = izquierda.getBoundingClientRect();
+      const destino = derecha.getBoundingClientRect();
+      const contenedor = actividad.getBoundingClientRect();
+      const linea = document.createElementNS('http://www.w3.org/2000/svg', 'line');
+      linea.setAttribute('x1', origen.right - contenedor.left);
+      linea.setAttribute('y1', origen.top + origen.height / 2 - contenedor.top);
+      linea.setAttribute('x2', destino.left - contenedor.left);
+      linea.setAttribute('y2', destino.top + destino.height / 2 - contenedor.top);
+      linea.classList.add('linea-relacion');
+      lineas.appendChild(linea);
+    };
+    actividad.querySelectorAll('.opcion-actividad, .respuesta-actividad').forEach(opcion => {
+      opcion.addEventListener('click', () => {
+        if(opcion.classList.contains('correcto')) return;
+        if(opcion.classList.contains('opcion-actividad')) {
+          actividad.querySelectorAll('.opcion-actividad').forEach(item => item.classList.remove('seleccionado'));
+          seleccionado = opcion;
+          opcion.classList.add('seleccionado');
+          estado.textContent = 'Ahora selecciona su definición.';
+          return;
+        }
+        if(!seleccionado) {
+          estado.textContent = 'Primero selecciona un elemento de la izquierda.';
+          return;
+        }
+        if(seleccionado.dataset.pareja === opcion.dataset.pareja) {
+          seleccionado.classList.add('correcto');
+          opcion.classList.add('correcto');
+          actualizarLinea(seleccionado, opcion);
+          seleccionado = null;
+          estado.textContent = '¡Correcto! Continúa con las parejas restantes.';
+          estado.classList.add('ok');
+        } else {
+          opcion.classList.add('incorrecto');
+          estado.textContent = 'Esa definición no corresponde. Inténtalo de nuevo.';
+          setTimeout(() => opcion.classList.remove('incorrecto'), 500);
+        }
+      });
+    });
+  });
+
+  document.querySelectorAll('[data-funciones], [data-clasificacion]').forEach(grupo => {
+    const estado = grupo.parentElement.querySelector('[data-estado]');
+    grupo.querySelectorAll('.funcion-item, .clasificacion-item').forEach(item => {
+      item.querySelectorAll('.vf-opcion').forEach(opcion => opcion.addEventListener('click', () => {
+        const correcta = opcion.dataset.respuesta === item.dataset.correcta;
+        item.querySelectorAll('.vf-opcion').forEach(btn => btn.classList.remove('correcto', 'incorrecto'));
+        opcion.classList.add(correcta ? 'correcto' : 'incorrecto');
+        estado.textContent = correcta ? '¡Respuesta correcta!' : 'No corresponde. Inténtalo nuevamente.';
+        estado.classList.toggle('ok', correcta);
+      }));
+    });
   });
 
   // barra de progreso de lectura
