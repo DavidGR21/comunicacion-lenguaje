@@ -52,6 +52,11 @@
     opacity:0;
     animation:rise .7s .1s forwards ease-out;
   }
+  .portada-sello{
+    width:min(150px,42vw);height:auto;display:block;object-fit:contain;
+    margin:0 auto 24px;opacity:0;
+    animation:rise .8s forwards ease-out;
+  }
   .portada .eyebrow span{display:block;}
   .portada .quote{
     font-style:italic;
@@ -101,14 +106,15 @@
   nav.scrolled{background:rgba(251,247,240,.97);border-bottom-color:var(--line);}
   .nav-inner{
     display:flex;align-items:center;gap:28px;
-    max-width:920px;margin:0 auto;padding:14px 28px;
+    width:100%;max-width:none;margin:0;padding:10px 10px;
   }
+  .nav-sello{width:72px;height:54px;object-fit:contain;display:block;flex-shrink:0;}
   .nav-marca{
     font-family:'Fraunces',serif;font-style:italic;font-size:14px;
     color:var(--ink);white-space:nowrap;flex-shrink:0;
   }
   nav ul{
-    display:flex;gap:20px;overflow-x:auto;
+    display:flex;flex:1;min-width:0;justify-content:safe center;gap:20px;overflow-x:auto;
     list-style:none;margin:0;padding:2px 0;
     scrollbar-width:none;
   }
@@ -119,7 +125,11 @@
     transition:color .2s ease, border-color .2s ease;
   }
   nav a.active{color:var(--ink);border-color:var(--accent);}
-  @media(max-width:640px){ .nav-marca{display:none;} }
+  @media(max-width:640px){
+    .nav-inner{gap:16px;padding:8px 8px;}
+    .nav-sello{width:58px;height:42px;}
+    .nav-marca{display:none;}
+  }
 
   /* SECTIONS */
   section{padding:88px 0;border-bottom:1px solid var(--line);}
@@ -272,23 +282,9 @@
 
 <div class="progreso" id="progreso"></div>
 
-<header class="portada" id="inicio-top">
-  <p class="eyebrow"><span>Universidad Técnica de Ambato</span><span>Carrera de Contabilidad y Auditoría · Asignatura de TIC</span></p>
-  <p class="quote">Comunicar es compartir ideas, conocimientos y sentimientos para comprender y relacionarnos con los demás.</p>
-  <svg class="onda" width="140" height="28" viewBox="0 0 140 28" xmlns="http://www.w3.org/2000/svg">
-    <path d="M0 14 Q 8 2, 16 14 T 32 14 T 48 14 T 64 14 T 80 14 T 96 14 T 112 14 T 128 14 T 140 14"/>
-  </svg>
-  <div class="rule"></div>
-  <div class="colofon">
-    <strong>Comunicación y Lenguaje</strong>
-    <div class="fila">Dayana Gavilanez</div>
-    <div class="fila">Primer semestre · 2026</div>
-  </div>
-  <div class="scroll-hint">desplázate para comenzar ↓</div>
-</header>
-
 <nav id="nav">
   <div class="nav-inner">
+    <img class="nav-sello" src="https://redi.cedia.edu.ec/members/UTA.png" alt="Sello de la Universidad Técnica de Ambato">
     <span class="nav-marca">Comunicación &amp; Lenguaje</span>
     <ul>
       <li><a href="#inicio" data-nav>Inicio</a></li>
@@ -305,6 +301,22 @@
     </ul>
   </div>
 </nav>
+
+<header class="portada" id="inicio-top">
+  <img class="portada-sello" src="https://redi.cedia.edu.ec/members/UTA.png" alt="Sello de la Universidad Técnica de Ambato">
+  <p class="eyebrow"><span>Universidad Técnica de Ambato</span><span>Carrera de Contabilidad y Auditoría · Asignatura de Tecnologías de la Información y Comunicación (TIC)</span></p>
+  <p class="quote">Comunicar es compartir ideas, conocimientos y sentimientos para comprender y relacionarnos con los demás.</p>
+  <svg class="onda" width="140" height="28" viewBox="0 0 140 28" xmlns="http://www.w3.org/2000/svg">
+    <path d="M0 14 Q 8 2, 16 14 T 32 14 T 48 14 T 64 14 T 80 14 T 96 14 T 112 14 T 128 14 T 140 14"/>
+  </svg>
+  <div class="rule"></div>
+  <div class="colofon">
+    <strong>Comunicación y Lenguaje</strong>
+    <div class="fila">Dayana Gavilanez</div>
+    <div class="fila">Primer semestre · 2026</div>
+  </div>
+  <div class="scroll-hint">desplázate para comenzar ↓</div>
+</header>
 
 <main class="wrap">
 
