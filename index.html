@@ -1,0 +1,572 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Comunicación y Lenguaje — Dayana Gavilanez</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,500;0,9..144,600;1,9..144,400;1,9..144,500&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --paper:#fbf7f0;
+    --paper-soft:#f3ecdf;
+    --ink:#1b2430;
+    --ink-soft:#5b6472;
+    --accent:#a9782f;
+    --wine:#6e2a34;
+    --line:#ded5c2;
+  }
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0;
+    background:var(--paper);
+    color:var(--ink);
+    font-family:'Inter',sans-serif;
+    font-size:17px;
+    line-height:1.65;
+  }
+  h1,h2,h3,.display{font-family:'Fraunces',serif;}
+  a{color:inherit;}
+  .wrap{max-width:920px;margin:0 auto;padding:0 28px;}
+
+  /* PORTADA */
+  .portada{
+    min-height:100vh;
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    align-items:center;
+    text-align:center;
+    position:relative;
+    padding:64px 24px;
+    background:
+      radial-gradient(circle at 50% 0%, rgba(169,120,47,0.08), transparent 55%),
+      var(--paper);
+  }
+  .portada .eyebrow{
+    font-size:13px;
+    letter-spacing:.04em;
+    color:var(--ink-soft);
+    opacity:0;
+    animation:rise .7s .1s forwards ease-out;
+  }
+  .portada .eyebrow span{display:block;}
+  .portada .quote{
+    font-style:italic;
+    font-weight:400;
+    font-size:clamp(28px,4.4vw,46px);
+    line-height:1.28;
+    max-width:760px;
+    color:var(--ink);
+    margin:36px 0 40px;
+    opacity:0;
+    animation:rise .8s .35s forwards ease-out;
+  }
+  .portada .quote::before{content:"“";color:var(--wine);}
+  .portada .quote::after{content:"”";color:var(--wine);}
+  .rule{width:56px;height:1px;background:var(--accent);margin:0 auto;}
+  .colofon{
+    margin-top:36px;
+    font-size:14px;
+    color:var(--ink-soft);
+    opacity:0;
+    animation:rise .8s .6s forwards ease-out;
+  }
+  .colofon strong{
+    display:block;
+    font-family:'Fraunces',serif;
+    font-size:20px;
+    font-weight:600;
+    color:var(--ink);
+    margin-bottom:8px;
+  }
+  .colofon .fila{margin-top:4px;}
+  @keyframes rise{from{opacity:0;transform:translateY(14px);}to{opacity:1;transform:translateY(0);}}
+  .scroll-hint{
+    position:absolute;bottom:28px;left:50%;transform:translateX(-50%);
+    font-size:12px;color:var(--ink-soft);opacity:0;
+    animation:rise .8s .9s forwards ease-out;
+  }
+
+  /* NAV */
+  nav{
+    position:sticky;top:0;z-index:20;
+    background:rgba(251,247,240,.88);
+    backdrop-filter:blur(8px);
+    border-bottom:1px solid transparent;
+    transition:background .3s ease, border-color .3s ease;
+  }
+  nav.scrolled{background:rgba(251,247,240,.97);border-bottom-color:var(--line);}
+  .nav-inner{
+    display:flex;align-items:center;gap:28px;
+    max-width:920px;margin:0 auto;padding:14px 28px;
+  }
+  .nav-marca{
+    font-family:'Fraunces',serif;font-style:italic;font-size:14px;
+    color:var(--ink);white-space:nowrap;flex-shrink:0;
+  }
+  nav ul{
+    display:flex;gap:20px;overflow-x:auto;
+    list-style:none;margin:0;padding:2px 0;
+    scrollbar-width:none;
+  }
+  nav ul::-webkit-scrollbar{display:none;}
+  nav a{
+    font-size:13.5px;white-space:nowrap;text-decoration:none;color:var(--ink-soft);
+    padding-bottom:3px;border-bottom:2px solid transparent;
+    transition:color .2s ease, border-color .2s ease;
+  }
+  nav a.active{color:var(--ink);border-color:var(--accent);}
+  @media(max-width:640px){ .nav-marca{display:none;} }
+
+  /* SECTIONS */
+  section{padding:88px 0;border-bottom:1px solid var(--line);}
+  section:last-of-type{border-bottom:none;}
+  .kicker{font-size:13px;color:var(--accent);margin:0 0 10px;}
+  h2.titulo{font-size:clamp(26px,3.4vw,36px);font-weight:600;margin:0 0 28px;}
+  p{color:var(--ink-soft);}
+  strong{color:var(--ink);}
+
+  .intro-lead{font-size:20px;color:var(--ink);max-width:640px;}
+
+  /* CHAPTER (temas) */
+  .capitulo{display:grid;grid-template-columns:120px 1fr;gap:32px;}
+  .capitulo .numero{
+    font-family:'Fraunces',serif;font-size:64px;font-weight:300;
+    color:var(--accent);line-height:1;
+  }
+  .capitulo h3{font-size:24px;margin:6px 0 4px;font-weight:600;}
+  .sub{font-size:19px;margin:32px 0 8px;font-weight:600;}
+  .ejemplo{
+    border-left:2px solid var(--wine);
+    padding:6px 0 6px 18px;margin:14px 0;
+    font-style:italic;color:var(--ink);
+  }
+  .lista-elementos{list-style:none;margin:0;padding:0;}
+  .lista-elementos li{
+    padding:10px 0;border-top:1px solid var(--line);
+    display:grid;grid-template-columns:150px 1fr;gap:16px;
+  }
+  .lista-elementos li:last-child{border-bottom:1px solid var(--line);}
+  .lista-elementos b{color:var(--ink);font-weight:600;}
+
+  .tabla-comparativa{width:100%;border-collapse:collapse;margin-top:14px;font-size:15.5px;}
+  .tabla-comparativa th,.tabla-comparativa td{
+    text-align:left;padding:10px 14px;border-bottom:1px solid var(--line);
+  }
+  .tabla-comparativa th{font-family:'Fraunces',serif;font-weight:600;color:var(--ink);}
+
+  @media(max-width:640px){
+    .capitulo{grid-template-columns:1fr;}
+    .capitulo .numero{font-size:40px;}
+    .lista-elementos li{grid-template-columns:1fr;gap:2px;}
+  }
+
+  /* ACTIVIDADES */
+  .actividad{
+    border:1px solid var(--line);border-radius:2px;padding:20px 22px;margin-bottom:14px;
+    background:var(--paper-soft);
+  }
+  .actividad button{
+    all:unset;cursor:pointer;display:flex;justify-content:space-between;width:100%;
+    font-family:'Fraunces',serif;font-size:17px;color:var(--ink);font-weight:500;
+  }
+  .actividad button::after{content:"+";color:var(--accent);font-size:20px;transition:transform .25s;}
+  .actividad.open button::after{transform:rotate(45deg);}
+  .actividad .resp{
+    max-height:0;overflow:hidden;transition:max-height .3s ease;
+    font-size:15px;color:var(--ink-soft);
+  }
+  .actividad.open .resp{max-height:220px;margin-top:12px;}
+
+  /* GALERÍA */
+  .galeria-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:2px;background:var(--line);}
+  .placa{background:var(--paper);padding:28px 24px;min-height:150px;display:flex;flex-direction:column;justify-content:space-between;transition:transform .35s cubic-bezier(.2,.7,.3,1),background .35s ease;}
+  .placa:hover{transform:translateY(-5px);background:var(--paper-soft);}
+  .placa .marca{font-family:'Fraunces',serif;font-style:italic;font-size:15px;color:var(--accent);}
+  .placa p{margin:14px 0 0;font-size:14.5px;}
+
+  /* PROGRESO DE LECTURA */
+  .progreso{position:fixed;top:0;left:0;height:2px;background:var(--accent);width:0%;z-index:30;}
+
+  /* REVELADO AL DESPLAZAR */
+  .revela{opacity:0;transform:translateY(26px);transition:opacity .7s cubic-bezier(.2,.7,.3,1),transform .7s cubic-bezier(.2,.7,.3,1);}
+  .revela.visible{opacity:1;transform:translateY(0);}
+
+  /* ONDA DE LA PORTADA */
+  .onda path{
+    fill:none;stroke:var(--accent);stroke-width:1.5;
+    stroke-dasharray:520;stroke-dashoffset:520;
+    animation:dibujar 1.6s .25s forwards cubic-bezier(.2,.7,.3,1);
+  }
+  @keyframes dibujar{to{stroke-dashoffset:0;}}
+
+  /* ICONOS DE LÍNEA */
+  .icono{width:36px;height:36px;color:var(--accent);margin-bottom:12px;display:block;}
+  .icono.vino{color:var(--wine);}
+  .bloque-sub{margin-top:38px;}
+
+  /* VIDEOS */
+  .video-marco{margin:20px 0 4px;}
+  .video-marco .etiqueta{
+    font-family:'Fraunces',serif;font-style:italic;font-size:14.5px;
+    color:var(--accent);display:block;margin-bottom:10px;
+  }
+  .video-caja{
+    position:relative;width:100%;padding-top:56.25%;
+    background:var(--ink);border:1px solid var(--line);overflow:hidden;
+  }
+  .video-caja iframe{position:absolute;inset:0;width:100%;height:100%;border:0;}
+  .ver-youtube{
+    display:inline-block;margin-top:8px;font-size:12.5px;color:var(--ink-soft);
+    text-decoration:none;border-bottom:1px solid var(--line);
+  }
+  .ver-youtube:hover{color:var(--accent);border-color:var(--accent);}
+
+  /* CIERRE */
+  .cierre{background:var(--wine);color:var(--paper);}
+  .cierre .kicker{color:#dcb9a3;}
+  .cierre p{color:#eadcd2;}
+  .cierre h2.titulo{color:var(--paper);}
+  .cierre .gran-frase{
+    font-family:'Fraunces',serif;font-style:italic;font-weight:400;
+    font-size:clamp(22px,3vw,30px);line-height:1.4;max-width:680px;margin:0 0 30px;
+  }
+
+  footer{padding:48px 0;text-align:center;font-size:13px;color:var(--ink-soft);}
+  footer a{text-decoration:underline;}
+</style>
+</head>
+<body>
+
+<div class="progreso" id="progreso"></div>
+
+<header class="portada" id="inicio-top">
+  <p class="eyebrow"><span>Universidad Técnica de Ambato</span><span>Carrera de Contabilidad y Auditoría · Asignatura de TIC</span></p>
+  <p class="quote">Comunicar es compartir ideas, conocimientos y sentimientos para comprender y relacionarnos con los demás.</p>
+  <svg class="onda" width="140" height="28" viewBox="0 0 140 28" xmlns="http://www.w3.org/2000/svg">
+    <path d="M0 14 Q 8 2, 16 14 T 32 14 T 48 14 T 64 14 T 80 14 T 96 14 T 112 14 T 128 14 T 140 14"/>
+  </svg>
+  <div class="rule"></div>
+  <div class="colofon">
+    <strong>Comunicación y Lenguaje</strong>
+    <div class="fila">Dayana Gavilanez</div>
+    <div class="fila">Primer semestre · 2026</div>
+  </div>
+  <div class="scroll-hint">desplázate para comenzar ↓</div>
+</header>
+
+<nav id="nav">
+  <div class="nav-inner">
+    <span class="nav-marca">Comunicación &amp; Lenguaje</span>
+    <ul>
+      <li><a href="#inicio" data-nav>Inicio</a></li>
+      <li><a href="#tema1" data-nav>Comunicación</a></li>
+      <li><a href="#tema2" data-nav>Funciones</a></li>
+      <li><a href="#tema3" data-nav>Morfosintaxis</a></li>
+      <li><a href="#tema4" data-nav>Lenguaje verbal</a></li>
+      <li><a href="#tema5" data-nav>Roles</a></li>
+      <li><a href="#podcast" data-nav>Podcast</a></li>
+      <li><a href="#actividades" data-nav>Actividades</a></li>
+      <li><a href="#galeria" data-nav>Galería</a></li>
+      <li><a href="#conclusion" data-nav>Conclusión</a></li>
+      <li><a href="#fuentes" data-nav>Fuentes</a></li>
+    </ul>
+  </div>
+</nav>
+
+<main class="wrap">
+
+  <section id="inicio">
+    <p class="kicker revela">Bienvenida</p>
+    <h2 class="titulo revela">Un espacio para pensar cómo nos comunicamos</h2>
+    <p class="intro-lead revela">Aquí se presentan los principales conceptos relacionados con la comunicación, sus elementos, funciones, tipos de lenguaje, gramática y roles que cumple el lenguaje en la sociedad. La comunicación es una parte fundamental de nuestra vida: nos permite expresar lo que pensamos y sentimos, aprender de otras personas y relacionarnos en diferentes ambientes.</p>
+    <p style="margin-top:26px;"><strong>Objetivo —</strong> comprender los principales elementos, características y funciones de la comunicación y el lenguaje para desarrollar una comunicación clara, adecuada y efectiva en el ámbito personal, académico y profesional.</p>
+  </section>
+
+  <section id="tema1">
+    <div class="capitulo revela">
+      <div class="numero">01</div>
+      <div>
+        <h3>La comunicación, la expresión y el lenguaje</h3>
+        <p>La comunicación es el proceso mediante el cual dos o más personas intercambian información, ideas, conocimientos, opiniones o sentimientos. Para que sea efectiva, el mensaje debe ser comprendido por el receptor: por eso importa usar un lenguaje adecuado a la situación y a las personas con quienes hablamos.</p>
+        <p>En el ámbito universitario es fundamental para participar en clases, realizar exposiciones, trabajar en equipo y presentar trabajos académicos.</p>
+
+        <svg class="icono revela" viewBox="0 0 40 40" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M6 10h28v16H16l-6 6V26H6z"/></svg>
+        <div class="video-marco revela">
+          <span class="etiqueta">Video · La comunicación</span>
+          <div class="video-caja"><iframe src="https://www.youtube-nocookie.com/embed/KujFJsEOPTs?rel=0" title="La comunicación" loading="lazy" allowfullscreen></iframe></div>
+          <a class="ver-youtube" href="https://www.youtube.com/watch?v=KujFJsEOPTs" target="_blank" rel="noopener">Ver en YouTube</a>
+        </div>
+
+        <p class="sub">Elementos de la comunicación</p>
+        <ul class="lista-elementos">
+          <li><b>Emisor</b><span>Persona que crea y transmite el mensaje.</span></li>
+          <li><b>Receptor</b><span>Persona que recibe e interpreta el mensaje.</span></li>
+          <li><b>Mensaje</b><span>Información o contenido que se desea transmitir.</span></li>
+          <li><b>Canal</b><span>Medio utilizado para enviar el mensaje.</span></li>
+          <li><b>Código</b><span>Conjunto de signos utilizados para comunicarse.</span></li>
+          <li><b>Contexto</b><span>Situación en la que ocurre la comunicación.</span></li>
+          <li><b>Retroalimentación</b><span>Respuesta que proporciona el receptor.</span></li>
+        </ul>
+
+        <p class="sub">Tipos de comunicación</p>
+        <p>Verbal (usa palabras habladas o escritas), no verbal (gestos, expresiones, imágenes), interpersonal (entre dos personas) y grupal (entre integrantes de un grupo).</p>
+
+        <p class="sub bloque-sub">Expresión y lenguaje</p>
+        <p>La <strong>expresión</strong> es la manera en que una persona manifiesta pensamientos y emociones — con palabras, escritura, gestos o arte. El <strong>lenguaje</strong> es la capacidad de comunicarse mediante signos, palabras y sonidos.</p>
+        <p class="ejemplo">Cuando una estudiante realiza una exposición, utiliza el lenguaje para organizar sus conocimientos, la expresión para manifestar sus ideas y la comunicación para transmitir el mensaje a sus compañeros.</p>
+
+        <svg class="icono vino revela" viewBox="0 0 40 40" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"><path d="M11 14v12M17 8v24M23 12v16M29 16v8M35 18v4M5 18v4"/></svg>
+        <div class="video-marco revela">
+          <span class="etiqueta">Video · La expresión</span>
+          <div class="video-caja"><iframe src="https://www.youtube-nocookie.com/embed/gCCV7SdAkiw?rel=0" title="La expresión" loading="lazy" allowfullscreen></iframe></div>
+          <a class="ver-youtube" href="https://www.youtube.com/watch?v=gCCV7SdAkiw" target="_blank" rel="noopener">Ver en YouTube</a>
+        </div>
+
+        <div class="video-marco revela" style="margin-top:34px;">
+          <span class="etiqueta">Video · El lenguaje</span>
+          <div class="video-caja"><iframe src="https://www.youtube-nocookie.com/embed/d3Cxb0Nns2g?rel=0" title="El lenguaje" loading="lazy" allowfullscreen></iframe></div>
+          <a class="ver-youtube" href="https://www.youtube.com/watch?v=d3Cxb0Nns2g" target="_blank" rel="noopener">Ver en YouTube</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="tema2">
+    <div class="capitulo revela">
+      <div class="numero">02</div>
+      <div>
+        <h3>Funciones del lenguaje</h3>
+        <p>Según la intención del hablante, un mensaje puede buscar informar, expresar sentimientos, llamar la atención del receptor, mantener una conversación o transmitir un mensaje de manera estética.</p>
+
+        <svg class="icono revela" viewBox="0 0 40 40" fill="none" stroke="currentColor" stroke-width="1.4"><circle cx="20" cy="20" r="14"/><circle cx="20" cy="6" r="1.7" fill="currentColor" stroke="none"/><circle cx="20" cy="34" r="1.7" fill="currentColor" stroke="none"/><circle cx="6" cy="20" r="1.7" fill="currentColor" stroke="none"/><circle cx="34" cy="20" r="1.7" fill="currentColor" stroke="none"/><circle cx="10.1" cy="10.1" r="1.7" fill="currentColor" stroke="none"/><circle cx="29.9" cy="29.9" r="1.7" fill="currentColor" stroke="none"/></svg>
+        <div class="video-marco revela">
+          <span class="etiqueta">Video · Funciones del lenguaje</span>
+          <div class="video-caja"><iframe src="https://www.youtube-nocookie.com/embed/a2EnTf5NISo?rel=0" title="Funciones del lenguaje" loading="lazy" allowfullscreen></iframe></div>
+          <a class="ver-youtube" href="https://www.youtube.com/watch?v=a2EnTf5NISo" target="_blank" rel="noopener">Ver en YouTube</a>
+        </div>
+
+        <p class="sub bloque-sub">Referencial</p>
+        <p>Transmite información objetiva. <span class="ejemplo">Las clases universitarias comienzan a las ocho de la mañana.</span></p>
+        <p class="sub">Emotiva</p>
+        <p>Expresa sentimientos u opiniones. <span class="ejemplo">Estoy muy feliz porque terminé mi trabajo.</span></p>
+        <p class="sub">Apelativa</p>
+        <p>Busca una reacción del receptor. <span class="ejemplo">Por favor, entrega el trabajo mañana.</span></p>
+        <p class="sub">Fática</p>
+        <p>Inicia, mantiene o cierra una comunicación. <span class="ejemplo">¿Me escuchas?</span></p>
+        <p class="sub">Metalingüística</p>
+        <p>El lenguaje explica al propio lenguaje. <span class="ejemplo">Estudiantes es un sustantivo.</span></p>
+        <p class="sub">Poética</p>
+        <p>Se centra en la forma del mensaje. <span class="ejemplo">Las estrellas iluminan silenciosamente la noche.</span></p>
+      </div>
+    </div>
+  </section>
+
+  <section id="tema3">
+    <div class="capitulo revela">
+      <div class="numero">03</div>
+      <div>
+        <h3>Morfosintaxis, oración, gramática y sintaxis</h3>
+        <p>La morfosintaxis estudia la relación entre la forma de las palabras y la manera en que se organizan dentro de una oración.</p>
+
+        <svg class="icono revela" viewBox="0 0 40 40" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M4 14h11M4 14v9M15 14v9"/><path d="M23 14h13M23 14v9M36 14v9"/></svg>
+        <div class="video-marco revela">
+          <span class="etiqueta">Video · Morfosintaxis</span>
+          <div class="video-caja"><iframe src="https://www.youtube-nocookie.com/embed/sDiPYVmoVf8?rel=0" title="Morfosintaxis" loading="lazy" allowfullscreen></iframe></div>
+          <a class="ver-youtube" href="https://www.youtube.com/watch?v=sDiPYVmoVf8" target="_blank" rel="noopener">Ver en YouTube</a>
+        </div>
+
+        <p class="sub bloque-sub">Morfología</p>
+        <p>Estudia la estructura y formación de las palabras. <span class="ejemplo">Los estudiantes responsables</span> — los (artículo), estudiantes (sustantivo), responsables (adjetivo).</p>
+
+        <p class="sub bloque-sub">La oración</p>
+        <p>Estructura formada por palabras organizadas que expresa una idea completa.</p>
+        <div class="video-marco revela">
+          <span class="etiqueta">Video · La oración</span>
+          <div class="video-caja"><iframe src="https://www.youtube-nocookie.com/embed/XCtYRKBHYwg?rel=0" title="La oración" loading="lazy" allowfullscreen></iframe></div>
+          <a class="ver-youtube" href="https://www.youtube.com/watch?v=XCtYRKBHYwg" target="_blank" rel="noopener">Ver en YouTube</a>
+        </div>
+
+        <p class="sub bloque-sub">Sintaxis</p>
+        <p>Estudia cómo se organizan las palabras para formar oraciones con sentido. <span class="ejemplo">Los estudiantes realizan su tarea</span> — sujeto: los estudiantes; predicado: realizan su tarea; verbo: realizan.</p>
+        <svg class="icono vino revela" viewBox="0 0 40 40" fill="none" stroke="currentColor" stroke-width="1.4"><circle cx="8" cy="10" r="2.4"/><circle cx="20" cy="27" r="2.4"/><circle cx="32" cy="10" r="2.4"/><path d="M8 12.4L20 24.6M32 12.4L20 24.6"/></svg>
+        <div class="video-marco revela">
+          <span class="etiqueta">Video · Sintaxis</span>
+          <div class="video-caja"><iframe src="https://www.youtube-nocookie.com/embed/zUmvz6SWEF4?rel=0" title="Sintaxis" loading="lazy" allowfullscreen></iframe></div>
+          <a class="ver-youtube" href="https://www.youtube.com/watch?v=zUmvz6SWEF4" target="_blank" rel="noopener">Ver en YouTube</a>
+        </div>
+
+        <p class="sub bloque-sub">Gramática y puntuación</p>
+        <p>La gramática reúne las normas que permiten usar correctamente una lengua. Los signos de puntuación — punto, coma, punto y coma, dos puntos, interrogación, exclamación, comillas — organizan las ideas y facilitan la comprensión.</p>
+        <div class="video-marco revela">
+          <span class="etiqueta">Video · Gramática</span>
+          <div class="video-caja"><iframe src="https://www.youtube-nocookie.com/embed/H00AWdqEXsc?rel=0" title="Gramática" loading="lazy" allowfullscreen></iframe></div>
+          <a class="ver-youtube" href="https://www.youtube.com/watch?v=H00AWdqEXsc" target="_blank" rel="noopener">Ver en YouTube</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="tema4">
+    <div class="capitulo revela">
+      <div class="numero">04</div>
+      <div>
+        <h3>El lenguaje verbal</h3>
+        <p>Utiliza palabras para transmitir información, pensamientos y opiniones. Se presenta de dos maneras: oral y escrita.</p>
+
+        <svg class="icono revela" viewBox="0 0 40 40" fill="none" stroke="currentColor" stroke-width="1.4"><rect x="4" y="12" width="10" height="16" rx="2"/><path d="M22 8l10 6v12l-10 6z"/></svg>
+        <div class="video-marco revela">
+          <span class="etiqueta">Video · Lenguaje verbal y no verbal</span>
+          <div class="video-caja"><iframe src="https://www.youtube-nocookie.com/embed/ktH8jsCQEyA?rel=0" title="Lenguaje verbal y no verbal" loading="lazy" allowfullscreen></iframe></div>
+          <a class="ver-youtube" href="https://www.youtube.com/watch?v=ktH8jsCQEyA" target="_blank" rel="noopener">Ver en YouTube</a>
+        </div>
+
+        <table class="tabla-comparativa">
+          <tr><th>Lenguaje oral</th><th>Lenguaje escrito</th></tr>
+          <tr><td>Utiliza la voz</td><td>Utiliza signos escritos</td></tr>
+          <tr><td>Generalmente es inmediato</td><td>Puede prepararse y revisarse</td></tr>
+          <tr><td>Utiliza entonación</td><td>Utiliza puntuación</td></tr>
+          <tr><td>Puede apoyarse en gestos</td><td>Puede apoyarse en imágenes</td></tr>
+          <tr><td>Interacción directa</td><td>Llega al receptor posteriormente</td></tr>
+        </table>
+        <p style="margin-top:20px;">Es fundamental para los estudiantes: permite participar en clases, realizar exposiciones, elaborar trabajos y comunicarse con docentes y compañeros.</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="tema5">
+    <div class="capitulo revela">
+      <div class="numero">05</div>
+      <div>
+        <h3>Roles del lenguaje</h3>
+        <p>El lenguaje no solo transmite información: también establece relaciones, expresa emociones, organiza actividades y transmite conocimientos.</p>
+        <svg class="icono vino revela" viewBox="0 0 40 40" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M12 22V10a2 2 0 014 0v7M16 17V7a2 2 0 014 0v9M20 16V9a2 2 0 014 0v9M24 17v-4a2 2 0 014 0v10c0 6-4 10-9 10-4 0-6-2-8-6l-3-6c-1-2 1-3.5 3-2.5l3 3"/></svg>
+        <ul class="lista-elementos">
+          <li><b>Comunicativo</b><span>Transmite información y opiniones.</span></li>
+          <li><b>Social</b><span>Permite relacionarnos y trabajar con otras personas.</span></li>
+          <li><b>Empatía</b><span>Comprende sentimientos y responde con respeto.</span></li>
+          <li><b>Organizativo</b><span>Ayuda a coordinar instrucciones y actividades.</span></li>
+          <li><b>Cultural</b><span>Transmite costumbres y tradiciones entre generaciones.</span></li>
+          <li><b>Educativo</b><span>Permite explicar, preguntar y debatir en el aprendizaje.</span></li>
+        </ul>
+        <p class="ejemplo">Comprendo tu punto de vista y podemos buscar una solución juntos.</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="podcast">
+    <p class="kicker revela">Recurso adicional</p>
+    <h2 class="titulo revela">Podcast educativo</h2>
+    <svg class="icono revela" viewBox="0 0 40 40" fill="none" stroke="currentColor" stroke-width="1.4"><rect x="15" y="5" width="10" height="18" rx="5"/><path d="M10 18v2a10 10 0 0020 0v-2M20 30v6M14 36h12"/></svg>
+    <p class="intro-lead revela">Síntesis, resumen y paráfrasis: tres herramientas para procesar lo que leemos y comunicarlo con nuestras propias palabras.</p>
+    <div class="video-marco revela" style="max-width:640px;">
+      <span class="etiqueta">Podcast · Síntesis, resumen y paráfrasis</span>
+      <div class="video-caja"><iframe src="https://www.youtube-nocookie.com/embed/j7yfz0wXFn0?rel=0" title="Síntesis, resumen y paráfrasis" loading="lazy" allowfullscreen></iframe></div>
+          <a class="ver-youtube" href="https://www.youtube.com/watch?v=j7yfz0wXFn0" target="_blank" rel="noopener">Ver en YouTube</a>
+        </div>
+  </section>
+
+  <section id="actividades">
+    <p class="kicker revela">Práctica</p>
+    <h2 class="titulo revela">Actividades</h2>
+
+    <div class="actividad">
+      <button>1 · Relaciona los elementos de la comunicación</button>
+      <div class="resp">Emisor → persona que transmite el mensaje · Receptor → persona que lo recibe · Mensaje → información transmitida · Canal → medio utilizado para transmitir.</div>
+    </div>
+    <div class="actividad">
+      <button>2 · Identifica la función del lenguaje</button>
+      <div class="resp">«Por favor, entrega el trabajo mañana» → Apelativa · «Estoy muy contenta con mi calificación» → Emotiva · «¿Puedes escucharme?» → Fática.</div>
+    </div>
+    <div class="actividad">
+      <button>3 · Clasifica: lenguaje oral o escrito</button>
+      <div class="resp">Una exposición → oral · Un ensayo → escrito · Una entrevista → oral · Un informe → escrito.</div>
+    </div>
+  </section>
+
+  <section id="galeria">
+    <p class="kicker revela">Galería</p>
+    <h2 class="titulo revela">Formas de comunicación en la vida académica</h2>
+    <div class="galeria-grid revela">
+      <div class="placa"><span class="marca">Verbal</span><p>Conversaciones, debates y exposiciones sostenidas con palabras habladas o escritas.</p></div>
+      <div class="placa"><span class="marca">No verbal</span><p>Gestos, postura y expresión facial que acompañan cada mensaje.</p></div>
+      <div class="placa"><span class="marca">Exposición</span><p>El momento en que lenguaje, expresión y comunicación se encuentran.</p></div>
+      <div class="placa"><span class="marca">Trabajo en equipo</span><p>Una comunicación clara facilita la organización entre compañeros.</p></div>
+      <div class="placa"><span class="marca">Comunicación académica</span><p>Compartir conocimientos y presentar ideas dentro del aula.</p></div>
+      <div class="placa"><span class="marca">Comunidad universitaria</span><p>Estudiantes que aprenden a expresarse con claridad y respeto.</p></div>
+    </div>
+  </section>
+
+  <section id="conclusion" style="border:none;">
+    <p class="kicker revela">Cierre</p>
+    <h2 class="titulo revela">Conclusión</h2>
+    <p>La comunicación y el lenguaje son elementos fundamentales para la vida personal, académica y profesional. Conocer los elementos de la comunicación, las funciones del lenguaje, la gramática y los tipos de lenguaje permite desarrollar mejores habilidades comunicativas y expresar las ideas de manera más clara y organizada.</p>
+    <p class="sub" style="margin-top:34px;">Reflexión personal</p>
+    <p>Durante el desarrollo de esta unidad comprendí que comunicarnos correctamente no significa solamente hablar, sino también saber escuchar, interpretar mensajes y utilizar diferentes formas de expresión. Estos conocimientos son importantes para mi formación universitaria y serán útiles en mi futura vida profesional, para relacionarme adecuadamente con compañeros, clientes y otras personas.</p>
+  </section>
+
+</main>
+
+<div class="cierre">
+  <div class="wrap" style="padding:80px 28px;">
+    <p class="kicker">Frase final</p>
+    <p class="gran-frase">Una comunicación clara facilita la organización y colaboración entre los integrantes de un grupo.</p>
+  </div>
+</div>
+
+<footer id="fuentes">
+  <div class="wrap">
+    <p>Bibliografía: Real Academia Española, <a href="https://www.rae.es/" target="_blank" rel="noopener">rae.es</a> · Material académico de la asignatura de Comunicación · Universidad Técnica de Ambato, <a href="https://www.uta.edu.ec/" target="_blank" rel="noopener">uta.edu.ec</a></p>
+  </div>
+</footer>
+
+<script>
+  // nav appears after leaving portada, and highlights active section
+  const nav = document.getElementById('nav');
+  const portada = document.getElementById('inicio-top');
+  const links = document.querySelectorAll('#nav a');
+  const sections = document.querySelectorAll('main section, #conclusion, #fuentes');
+
+  const navObserver = new IntersectionObserver(([e]) => {
+    nav.classList.toggle('scrolled', !e.isIntersecting);
+  }, {threshold:0});
+  navObserver.observe(portada);
+
+  const secObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if(entry.isIntersecting){
+        links.forEach(l => l.classList.toggle('active', l.getAttribute('href') === '#' + entry.target.id));
+      }
+    });
+  }, {rootMargin:'-45% 0px -50% 0px'});
+  sections.forEach(s => secObserver.observe(s));
+
+  // actividades accordion
+  document.querySelectorAll('.actividad button').forEach(btn => {
+    btn.addEventListener('click', () => btn.parentElement.classList.toggle('open'));
+  });
+
+  // barra de progreso de lectura
+  const barra = document.getElementById('progreso');
+  window.addEventListener('scroll', () => {
+    const alto = document.documentElement.scrollHeight - window.innerHeight;
+    barra.style.width = (window.scrollY / alto * 100) + '%';
+  });
+
+  // revelado suave al desplazar
+  const revelaObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if(entry.isIntersecting){
+        entry.target.classList.add('visible');
+        revelaObserver.unobserve(entry.target);
+      }
+    });
+  }, {threshold:0.12});
+  document.querySelectorAll('.revela').forEach(el => revelaObserver.observe(el));
+</script>
+
+</body>
+</html>
