@@ -264,6 +264,80 @@
   }
   .ver-youtube:hover{color:var(--accent);border-color:var(--accent);}
 
+  /* SEPARADORES DE UNIDAD */
+  section.unidad{padding:80px 0 72px;}
+  .unidad-cabecera{
+    position:relative;overflow:hidden;
+    background:var(--paper-soft);border:1px solid var(--line);border-top:3px solid var(--wine);
+    padding:44px 40px 38px;
+  }
+  .unidad-romano{
+    position:absolute;right:26px;top:-18px;pointer-events:none;
+    font-family:'Fraunces',serif;font-weight:300;font-size:190px;line-height:1;
+    color:var(--accent);opacity:.13;
+  }
+  .unidad-etiqueta{
+    font-size:12.5px;letter-spacing:.16em;text-transform:uppercase;font-weight:600;
+    color:var(--wine);margin:0 0 12px;position:relative;
+  }
+  .unidad-cabecera h2{
+    font-size:clamp(25px,3.5vw,36px);font-weight:600;line-height:1.22;
+    margin:0 0 14px;max-width:660px;position:relative;
+  }
+  .unidad-meta{display:flex;flex-wrap:wrap;gap:8px 22px;font-size:13.5px;color:var(--ink-soft);margin:0 0 24px;position:relative;}
+  .unidad-meta span::before{
+    content:"";display:inline-block;width:6px;height:6px;border-radius:50%;
+    background:var(--accent);margin-right:8px;vertical-align:middle;
+  }
+  .unidad-resultado{
+    border-left:2px solid var(--accent);padding:4px 0 4px 18px;margin:0;position:relative;
+    font-family:'Fraunces',serif;font-style:italic;font-size:17.5px;color:var(--ink);max-width:680px;
+  }
+  .unidad-resultado b{font-style:normal;font-family:'Inter',sans-serif;font-size:13px;font-weight:600;color:var(--wine);display:block;margin-bottom:4px;}
+  .unidad-temas{
+    list-style:none;margin:28px 0 0;padding:0;position:relative;
+    display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:2px;background:var(--line);
+  }
+  .unidad-temas a{
+    display:flex;gap:12px;align-items:baseline;height:100%;
+    background:var(--paper);padding:12px 15px;text-decoration:none;font-size:14.5px;color:var(--ink);
+    transition:background .25s ease, color .25s ease;
+  }
+  .unidad-temas a:hover{background:#f0e3cb;}
+  .unidad-temas a span{font-family:'Fraunces',serif;color:var(--accent);font-size:15px;min-width:22px;}
+  @media(max-width:640px){
+    .unidad-cabecera{padding:34px 22px 28px;}
+    .unidad-romano{font-size:120px;right:12px;top:-8px;}
+  }
+
+  /* SEPARADOR DE UNIDAD TEMÁTICA */
+  .tematica{
+    display:flex;align-items:center;gap:18px;margin:56px 0 0;
+    font-family:'Fraunces',serif;font-style:italic;font-size:15px;color:var(--accent);text-align:center;
+  }
+  .tematica::before,.tematica::after{content:"";flex:1;height:1px;background:var(--line);}
+
+  /* RECURSOS EXTRA DE LOS TEMAS */
+  .tabla-scroll{overflow-x:auto;}
+  .codigo{
+    font-family:Consolas,'Courier New',monospace;font-size:14.5px;color:var(--ink);
+    background:var(--paper-soft);border:1px solid var(--line);padding:12px 16px;margin:14px 0;
+    white-space:pre-wrap;word-break:break-word;
+  }
+  .nota{
+    background:var(--paper-soft);border:1px solid var(--line);border-left:3px solid var(--accent);
+    padding:14px 18px;margin:20px 0;font-size:15.5px;color:var(--ink-soft);
+  }
+  .nota strong{color:var(--wine);}
+  .pasos{counter-reset:paso;list-style:none;margin:14px 0;padding:0;}
+  .pasos li{counter-increment:paso;position:relative;padding:10px 0 10px 46px;border-top:1px solid var(--line);color:var(--ink-soft);}
+  .pasos li:last-child{border-bottom:1px solid var(--line);}
+  .pasos li::before{
+    content:counter(paso,decimal-leading-zero);position:absolute;left:0;top:9px;
+    font-family:'Fraunces',serif;font-size:19px;color:var(--accent);
+  }
+  .pasos li b{color:var(--ink);}
+
   /* CIERRE */
   .cierre{background:var(--wine);color:var(--paper);}
   .cierre .kicker{color:#dcb9a3;}
@@ -288,11 +362,10 @@
     <span class="nav-marca">Comunicación &amp; Lenguaje</span>
     <ul>
       <li><a href="#inicio" data-nav>Inicio</a></li>
-      <li><a href="#tema1" data-nav>Comunicación</a></li>
-      <li><a href="#tema2" data-nav>Funciones</a></li>
-      <li><a href="#tema3" data-nav>Morfosintaxis</a></li>
-      <li><a href="#tema4" data-nav>Lenguaje verbal</a></li>
-      <li><a href="#tema5" data-nav>Roles</a></li>
+      <li><a href="#unidad1" data-nav>Unidad 1</a></li>
+      <li><a href="#unidad2" data-nav>Unidad 2</a></li>
+      <li><a href="#unidad3" data-nav>Unidad 3</a></li>
+      <li><a href="#unidad4" data-nav>Unidad 4</a></li>
       <li><a href="#podcast" data-nav>Podcast</a></li>
       <li><a href="#actividades" data-nav>Actividades</a></li>
       <li><a href="#galeria" data-nav>Galería</a></li>
@@ -325,9 +398,33 @@
     <h2 class="titulo revela">Un espacio para pensar cómo nos comunicamos</h2>
     <p class="intro-lead revela">Aquí se presentan los principales conceptos relacionados con la comunicación, sus elementos, funciones, tipos de lenguaje, gramática y roles que cumple el lenguaje en la sociedad. La comunicación es una parte fundamental de nuestra vida: nos permite expresar lo que pensamos y sentimos, aprender de otras personas y relacionarnos en diferentes ambientes.</p>
     <p style="margin-top:26px;"><strong>Objetivo —</strong> comprender los principales elementos, características y funciones de la comunicación y el lenguaje para desarrollar una comunicación clara, adecuada y efectiva en el ámbito personal, académico y profesional.</p>
+    <p><strong>Resultado de aprendizaje de la asignatura —</strong> aplica la comunicación para la interacción social mediante la utilización de herramientas tecnológicas. El recorrido se organiza en cuatro unidades de 24 horas cada una (96 horas en total).</p>
   </section>
 
-  <section id="tema1">
+  <section class="unidad" id="unidad1" data-unidad="unidad1">
+    <div class="unidad-cabecera revela">
+      <span class="unidad-romano" aria-hidden="true">I</span>
+      <p class="unidad-etiqueta">Unidad 1</p>
+      <h2>Comunicación, lenguaje y redacción académica</h2>
+      <div class="unidad-meta"><span>24 horas</span><span>Comunicación, expresión, lenguaje, roles</span><span>Morfosintaxis y puntuación</span><span>Redacción y ensayo</span></div>
+      <p class="unidad-resultado"><b>Resultado de aprendizaje</b>Resume la importancia del uso de la comunicación verbal (oral y escrita) a través de herramientas colaborativas de interacción social.</p>
+      <ul class="unidad-temas">
+        <li><a href="#tema1"><span>01</span>Comunicación, expresión y lenguaje</a></li>
+        <li><a href="#tema2"><span>02</span>Funciones del lenguaje</a></li>
+        <li><a href="#tema3"><span>03</span>Morfosintaxis y puntuación</a></li>
+        <li><a href="#tema4"><span>04</span>El lenguaje verbal</a></li>
+        <li><a href="#tema5"><span>05</span>Roles del lenguaje</a></li>
+        <li><a href="#tema6"><span>06</span>Resumen, síntesis y paráfrasis</a></li>
+        <li><a href="#tema7"><span>07</span>El argumento</a></li>
+        <li><a href="#tema8"><span>08</span>La descripción</a></li>
+        <li><a href="#tema9"><span>09</span>El ensayo</a></li>
+      </ul>
+    </div>
+  </section>
+
+  <p class="tematica revela">Comunicación, expresión, lenguaje, roles · Morfosintaxis, puntuación</p>
+
+  <section id="tema1" data-unidad="unidad1">
     <div class="capitulo revela">
       <div class="numero">01</div>
       <div>
@@ -376,7 +473,7 @@
     </div>
   </section>
 
-  <section id="tema2">
+  <section id="tema2" data-unidad="unidad1">
     <div class="capitulo revela">
       <div class="numero">02</div>
       <div>
@@ -406,7 +503,7 @@
     </div>
   </section>
 
-  <section id="tema3">
+  <section id="tema3" data-unidad="unidad1">
     <div class="capitulo revela">
       <div class="numero">03</div>
       <div>
@@ -467,7 +564,7 @@
     </div>
   </section>
 
-  <section id="tema4">
+  <section id="tema4" data-unidad="unidad1">
     <div class="capitulo revela">
       <div class="numero">04</div>
       <div>
@@ -494,7 +591,7 @@
     </div>
   </section>
 
-  <section id="tema5">
+  <section id="tema5" data-unidad="unidad1">
     <div class="capitulo revela">
       <div class="numero">05</div>
       <div>
@@ -510,6 +607,840 @@
           <li><b>Educativo</b><span>Permite explicar, preguntar y debatir en el aprendizaje.</span></li>
         </ul>
         <p class="ejemplo">Comprendo tu punto de vista y podemos buscar una solución juntos.</p>
+      </div>
+    </div>
+  </section>
+
+  <p class="tematica revela">Redacción y ensayo</p>
+
+  <section id="tema6" data-unidad="unidad1">
+    <div class="capitulo revela">
+      <div class="numero">06</div>
+      <div>
+        <h3>El resumen, la síntesis y la paráfrasis</h3>
+        <p>Son tres técnicas para procesar un texto y comunicarlo de nuevo. Las tres parten de una lectura comprensiva: antes de reducir o reformular un texto hay que identificar el tema, la idea principal y las ideas secundarias.</p>
+
+        <svg class="icono revela" viewBox="0 0 40 40" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"><path d="M8 8h24M8 14h24M8 20h24M8 26h14"/><path d="M28 24l4 4-4 4"/></svg>
+        <div class="video-marco revela">
+          <span class="etiqueta">Video · Resumen, síntesis y paráfrasis</span>
+          <div class="video-caja"><iframe src="https://www.youtube-nocookie.com/embed/HxTWgyZGkpQ?rel=0" title="Resumen, síntesis y paráfrasis" loading="lazy" allowfullscreen></iframe></div>
+          <a class="ver-youtube" href="https://www.youtube.com/watch?v=HxTWgyZGkpQ" target="_blank" rel="noopener">Ver en YouTube</a>
+        </div>
+
+        <p class="sub bloque-sub">El resumen</p>
+        <p>Es la reducción de un texto a sus ideas esenciales, <strong>respetando el orden y el punto de vista del autor</strong>. No incluye opiniones de quien lo redacta y, como referencia, suele ocupar entre una cuarta y una tercera parte del original.</p>
+        <p class="sub">La síntesis</p>
+        <p>También condensa las ideas principales, pero <strong>con palabras propias</strong> y con libertad para reorganizarlas. Puede integrar información de varias fuentes en un solo texto coherente, por eso es muy útil para preparar marcos teóricos e informes.</p>
+        <p class="sub">La paráfrasis</p>
+        <p>Consiste en <strong>decir lo mismo con otras palabras</strong> para aclarar o explicar un texto. Su extensión es parecida a la del original. Puede ser <em>mecánica</em> (cambiar palabras por sinónimos) o <em>constructiva</em> (reelaborar toda la frase conservando el sentido).</p>
+        <p class="ejemplo">Original: «La contabilidad registra las operaciones económicas de una empresa».<br>Paráfrasis: «Llevar la contabilidad significa anotar todos los movimientos de dinero y bienes que realiza una organización».</p>
+
+        <div class="tabla-scroll">
+          <table class="tabla-comparativa">
+            <tr><th></th><th>Resumen</th><th>Síntesis</th><th>Paráfrasis</th></tr>
+            <tr><td><b>Extensión</b></td><td>Breve</td><td>Breve</td><td>Similar al original</td></tr>
+            <tr><td><b>Palabras</b></td><td>Del autor o propias</td><td>Propias</td><td>Propias</td></tr>
+            <tr><td><b>Orden</b></td><td>El del texto</td><td>Puede cambiar</td><td>El del texto</td></tr>
+            <tr><td><b>Fuentes</b></td><td>Una</td><td>Una o varias</td><td>Una</td></tr>
+          </table>
+        </div>
+
+        <div class="video-marco revela" style="margin-top:34px;">
+          <span class="etiqueta">Video · Diferencia entre resumen y síntesis</span>
+          <div class="video-caja"><iframe src="https://www.youtube-nocookie.com/embed/2sB2i58HvuA?rel=0" title="Diferencia entre resumen y síntesis" loading="lazy" allowfullscreen></iframe></div>
+          <a class="ver-youtube" href="https://www.youtube.com/watch?v=2sB2i58HvuA" target="_blank" rel="noopener">Ver en YouTube</a>
+        </div>
+        <p class="nota"><strong>Importante —</strong> aunque se usen palabras propias, las ideas siguen siendo del autor. En un trabajo académico, el resumen, la síntesis y la paráfrasis deben citarse (por ejemplo, con normas APA) para evitar el plagio.</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="tema7" data-unidad="unidad1">
+    <div class="capitulo revela">
+      <div class="numero">07</div>
+      <div>
+        <h3>El argumento</h3>
+        <p>Un argumento es una razón, prueba o dato que se presenta para <strong>sostener una idea (tesis)</strong> y convencer al receptor. Argumentar es una habilidad básica en la vida universitaria y profesional: se argumenta en un debate, en un ensayo, en un informe de auditoría o al recomendar una decisión financiera.</p>
+
+        <svg class="icono vino revela" viewBox="0 0 40 40" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"><path d="M20 6v28M10 34h20"/><path d="M8 12h24"/><path d="M8 12l-4 10h8zM32 12l-4 10h8z"/></svg>
+        <div class="video-marco revela">
+          <span class="etiqueta">Video · Textos argumentativos</span>
+          <div class="video-caja"><iframe src="https://www.youtube-nocookie.com/embed/Fe3JZTdISxw?rel=0" title="Textos argumentativos" loading="lazy" allowfullscreen></iframe></div>
+          <a class="ver-youtube" href="https://www.youtube.com/watch?v=Fe3JZTdISxw" target="_blank" rel="noopener">Ver en YouTube</a>
+        </div>
+
+        <p class="sub bloque-sub">Estructura de la argumentación</p>
+        <div class="analisis-oracion">
+          <p class="oracion-completa">Las pequeñas empresas deberían llevar contabilidad formal.</p>
+          <div class="desglose-oracion">
+            <div class="parte-oracion"><strong>Tesis</strong><span>La idea que se defiende.</span></div>
+            <div class="parte-oracion"><strong>Argumentos</strong><span>Permite conocer la rentabilidad real y cumplir con el SRI.</span></div>
+            <div class="parte-oracion"><strong>Conclusión</strong><span>Reafirma la tesis a partir de las razones.</span></div>
+          </div>
+        </div>
+
+        <p class="sub">Tipos de argumentos</p>
+        <ul class="lista-elementos">
+          <li><b>De autoridad</b><span>Cita a un experto o institución reconocida.</span></li>
+          <li><b>De datos</b><span>Usa cifras, estadísticas o resultados verificables.</span></li>
+          <li><b>De ejemplo</b><span>Presenta casos concretos que ilustran la tesis.</span></li>
+          <li><b>Causa — efecto</b><span>Muestra la consecuencia lógica de un hecho.</span></li>
+          <li><b>De analogía</b><span>Compara la situación con otra semejante.</span></li>
+          <li><b>De experiencia</b><span>Se apoya en vivencias propias o colectivas.</span></li>
+        </ul>
+
+        <div class="video-marco revela" style="margin-top:34px;">
+          <span class="etiqueta">Video · Tipos de argumentos con ejemplos</span>
+          <div class="video-caja"><iframe src="https://www.youtube-nocookie.com/embed/6Nx_onSUg2I?rel=0" title="Tipos de argumentos explicados con ejemplos" loading="lazy" allowfullscreen></iframe></div>
+          <a class="ver-youtube" href="https://www.youtube.com/watch?v=6Nx_onSUg2I" target="_blank" rel="noopener">Ver en YouTube</a>
+        </div>
+        <p class="nota"><strong>Cuidado con las falacias —</strong> son razonamientos que parecen válidos pero no lo son, como atacar a la persona en lugar de a su idea («no le creas, es muy joven») o generalizar a partir de un solo caso.</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="tema8" data-unidad="unidad1">
+    <div class="capitulo revela">
+      <div class="numero">08</div>
+      <div>
+        <h3>La descripción</h3>
+        <p>Describir es <strong>representar con palabras</strong> cómo es una persona, un objeto, un lugar, un proceso o una situación, de manera que el receptor pueda imaginarlo. Responde a la pregunta <em>¿cómo es?</em></p>
+
+        <svg class="icono revela" viewBox="0 0 40 40" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M4 20s6-10 16-10 16 10 16 10-6 10-16 10S4 20 4 20z"/><circle cx="20" cy="20" r="5"/></svg>
+
+        <p class="sub">Descripción objetiva y subjetiva</p>
+        <table class="tabla-comparativa">
+          <tr><th>Objetiva (técnica)</th><th>Subjetiva (literaria)</th></tr>
+          <tr><td>Muestra la realidad tal como es</td><td>Refleja la visión del autor</td></tr>
+          <tr><td>Lenguaje preciso y denotativo</td><td>Lenguaje expresivo y figurado</td></tr>
+          <tr><td>Informes, manuales, inventarios</td><td>Novelas, poemas, crónicas</td></tr>
+        </table>
+        <p class="ejemplo">Objetiva: «La oficina mide 4 × 5 m, tiene dos escritorios y un archivador metálico».<br>Subjetiva: «La oficina era un rincón cálido donde el olor a café se mezclaba con el de los papeles nuevos».</p>
+
+        <p class="sub bloque-sub">Tipos según lo que se describe</p>
+        <ul class="lista-elementos">
+          <li><b>Prosopografía</b><span>Rasgos físicos de una persona.</span></li>
+          <li><b>Etopeya</b><span>Rasgos de carácter y comportamiento.</span></li>
+          <li><b>Retrato</b><span>Combina rasgos físicos y de carácter.</span></li>
+          <li><b>Topografía</b><span>Describe un lugar o paisaje.</span></li>
+          <li><b>Cronografía</b><span>Describe una época o un momento.</span></li>
+        </ul>
+
+        <p class="sub bloque-sub">¿Cómo redactar una buena descripción?</p>
+        <ol class="pasos">
+          <li><b>Observar</b> con atención el objeto, la persona o el lugar.</li>
+          <li><b>Seleccionar</b> los rasgos más importantes según el propósito.</li>
+          <li><b>Ordenar</b> la información: de lo general a lo particular, de arriba abajo o de cerca a lejos.</li>
+          <li><b>Expresar</b> con adjetivos precisos, comparaciones y verbos en presente o pretérito imperfecto.</li>
+        </ol>
+      </div>
+    </div>
+  </section>
+
+  <section id="tema9" data-unidad="unidad1">
+    <div class="capitulo revela">
+      <div class="numero">09</div>
+      <div>
+        <h3>El ensayo: estructura y características</h3>
+        <p>El ensayo es un texto en prosa en el que el autor <strong>expone, analiza y argumenta su punto de vista</strong> sobre un tema. El término se asocia a Michel de Montaigne, quien en 1580 publicó sus <em>Essais</em>. En la universidad, el ensayo académico combina la opinión personal con argumentos respaldados por fuentes.</p>
+
+        <svg class="icono vino revela" viewBox="0 0 40 40" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"><path d="M10 4h15l7 7v25H10z"/><path d="M25 4v7h7M15 18h12M15 23h12M15 28h8"/></svg>
+        <div class="video-marco revela">
+          <span class="etiqueta">Video · El ensayo: definición, características y estructura</span>
+          <div class="video-caja"><iframe src="https://www.youtube-nocookie.com/embed/MUESepeGvkc?rel=0" title="El ensayo: definición, características, estructura y ejemplos" loading="lazy" allowfullscreen></iframe></div>
+          <a class="ver-youtube" href="https://www.youtube.com/watch?v=MUESepeGvkc" target="_blank" rel="noopener">Ver en YouTube</a>
+        </div>
+
+        <p class="sub bloque-sub">Estructura</p>
+        <div class="analisis-oracion">
+          <div class="desglose-oracion">
+            <div class="parte-oracion"><strong>Introducción</strong><span>Presenta el tema, el contexto y la tesis.</span></div>
+            <div class="parte-oracion"><strong>Desarrollo</strong><span>Expone los argumentos, ejemplos y citas.</span></div>
+            <div class="parte-oracion"><strong>Conclusión</strong><span>Retoma la tesis y cierra con una reflexión.</span></div>
+          </div>
+        </div>
+
+        <p class="sub">Características</p>
+        <ul class="lista-elementos">
+          <li><b>Subjetivo</b><span>Expresa la postura del autor, pero fundamentada.</span></li>
+          <li><b>Argumentativo</b><span>Defiende una tesis con razones.</span></li>
+          <li><b>Breve</b><span>Trata un tema concreto sin agotarlo.</span></li>
+          <li><b>Estilo cuidado</b><span>Redacción clara, coherente y correcta.</span></li>
+          <li><b>Riguroso</b><span>En el ámbito académico usa citas y referencias.</span></li>
+        </ul>
+
+        <p class="sub bloque-sub">Tipos de ensayo</p>
+        <p>Argumentativo (defiende una postura), expositivo (explica un tema), crítico (evalúa una obra o un hecho), literario (con mayor libertad estética) y científico (une el rigor de la ciencia con la reflexión personal).</p>
+
+        <div class="video-marco revela">
+          <span class="etiqueta">Video · Características del ensayo académico</span>
+          <div class="video-caja"><iframe src="https://www.youtube-nocookie.com/embed/_nomvw6wsXU?rel=0" title="Características del ensayo académico" loading="lazy" allowfullscreen></iframe></div>
+          <a class="ver-youtube" href="https://www.youtube.com/watch?v=_nomvw6wsXU" target="_blank" rel="noopener">Ver en YouTube</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="unidad" id="unidad2" data-unidad="unidad2">
+    <div class="unidad-cabecera revela">
+      <span class="unidad-romano" aria-hidden="true">II</span>
+      <p class="unidad-etiqueta">Unidad 2</p>
+      <h2>Comunicación no verbal y paralingüística</h2>
+      <div class="unidad-meta"><span>24 horas</span><span>Habilidades de la comunicación no verbal</span><span>Comunicación artefactual</span><span>Paralingüística</span></div>
+      <p class="unidad-resultado"><b>Resultado de aprendizaje</b>Utiliza herramientas tecnológicas para una correcta comunicación no verbal académica y profesional.</p>
+      <ul class="unidad-temas">
+        <li><a href="#tema10"><span>10</span>El contacto visual</a></li>
+        <li><a href="#tema11"><span>11</span>Posturas y movimientos</a></li>
+        <li><a href="#tema12"><span>12</span>Los gestos y la expresión facial</a></li>
+        <li><a href="#tema13"><span>13</span>Paralingüística y funciones de la voz</a></li>
+        <li><a href="#tema14"><span>14</span>Características de la voz</a></li>
+        <li><a href="#tema15"><span>15</span>Articulación de la voz</a></li>
+      </ul>
+    </div>
+  </section>
+
+  <p class="tematica revela">Habilidades de la comunicación no verbal · Comunicación artefactual</p>
+
+  <section id="tema10" data-unidad="unidad2">
+    <div class="capitulo revela">
+      <div class="numero">10</div>
+      <div>
+        <h3>El contacto visual</h3>
+        <p>La comunicación no verbal es todo lo que transmitimos <strong>sin palabras</strong>: la mirada, la postura, los gestos, la expresión del rostro, la distancia con los demás y la apariencia (comunicación artefactual: vestimenta, accesorios y objetos). Acompaña al mensaje verbal y puede reforzarlo, completarlo, sustituirlo o contradecirlo.</p>
+        <div class="video-marco revela">
+          <span class="etiqueta">Video · Comunicación no verbal: definición, tipos y funciones</span>
+          <div class="video-caja"><iframe src="https://www.youtube-nocookie.com/embed/yFIZDfSU6Wo?rel=0" title="Comunicación no verbal: definición, tipos y funciones" loading="lazy" allowfullscreen></iframe></div>
+          <a class="ver-youtube" href="https://www.youtube.com/watch?v=yFIZDfSU6Wo" target="_blank" rel="noopener">Ver en YouTube</a>
+        </div>
+        <p style="margin-top:22px;">La mirada es uno de los canales no verbales más poderosos. Mantener contacto visual demuestra <strong>atención, interés, seguridad y sinceridad</strong>; evitarlo puede interpretarse como nerviosismo, desinterés o falta de confianza.</p>
+
+        <svg class="icono vino revela" viewBox="0 0 40 40" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M3 20s6-9 17-9 17 9 17 9-6 9-17 9S3 20 3 20z"/><circle cx="20" cy="20" r="4.5"/><circle cx="20" cy="20" r="1.4" fill="currentColor" stroke="none"/></svg>
+
+        <p class="sub">Funciones de la mirada</p>
+        <ul class="lista-elementos">
+          <li><b>Regula</b><span>Indica cuándo es el turno de hablar o de escuchar.</span></li>
+          <li><b>Informa</b><span>Muestra si el receptor comprende o se aburre.</span></li>
+          <li><b>Expresa</b><span>Comunica emociones como alegría, duda o enojo.</span></li>
+          <li><b>Conecta</b><span>Genera cercanía y confianza con el público.</span></li>
+        </ul>
+
+        <p class="sub bloque-sub">Consejos para exposiciones</p>
+        <ol class="pasos">
+          <li><b>Recorre</b> todo el auditorio con la mirada, en forma de «Z» o por zonas.</li>
+          <li><b>Sostén</b> la mirada unos 3 a 5 segundos con cada persona o grupo.</li>
+          <li><b>Evita</b> leer las diapositivas o mirar solo al docente o al piso.</li>
+          <li><b>En videollamadas</b>, mira a la cámara y no a tu propia imagen.</li>
+        </ol>
+        <p class="nota"><strong>Contexto cultural —</strong> la intensidad adecuada de la mirada cambia según la cultura y la relación entre las personas: una mirada fija y prolongada puede resultar intimidante.</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="tema11" data-unidad="unidad2">
+    <div class="capitulo revela">
+      <div class="numero">11</div>
+      <div>
+        <h3>Posturas y movimientos</h3>
+        <p>La postura es la posición que adopta el cuerpo y revela nuestro estado de ánimo y nuestra actitud ante los demás. Los movimientos —cómo caminamos, nos desplazamos o usamos las manos— complementan el mensaje.</p>
+
+        <svg class="icono revela" viewBox="0 0 40 40" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"><circle cx="14" cy="7" r="3.5"/><path d="M14 11v12l-4 12M14 23l5 12M14 15l-7 5M14 15l7 4"/><path d="M28 10l6 6-6 6"/></svg>
+        <div class="video-marco revela">
+          <span class="etiqueta">Video · Lenguaje corporal</span>
+          <div class="video-caja"><iframe src="https://www.youtube-nocookie.com/embed/wmX3Q3JeLlY?rel=0" title="Lenguaje corporal (comunicación no verbal)" loading="lazy" allowfullscreen></iframe></div>
+          <a class="ver-youtube" href="https://www.youtube.com/watch?v=wmX3Q3JeLlY" target="_blank" rel="noopener">Ver en YouTube</a>
+        </div>
+
+        <table class="tabla-comparativa">
+          <tr><th>Postura abierta</th><th>Postura cerrada</th></tr>
+          <tr><td>Brazos relajados, palmas visibles</td><td>Brazos o piernas cruzados</td></tr>
+          <tr><td>Espalda recta, hombros hacia atrás</td><td>Hombros caídos, cuerpo encogido</td></tr>
+          <tr><td>Cuerpo orientado hacia el otro</td><td>Cuerpo girado hacia otro lado</td></tr>
+          <tr><td>Transmite confianza y disposición</td><td>Transmite inseguridad o rechazo</td></tr>
+        </table>
+
+        <p class="sub bloque-sub">La distancia (proxémica)</p>
+        <p>El antropólogo Edward T. Hall propuso cuatro zonas de distancia interpersonal:</p>
+        <ul class="lista-elementos">
+          <li><b>Íntima</b><span>Hasta 45 cm — familia y pareja.</span></li>
+          <li><b>Personal</b><span>De 45 cm a 1,20 m — amigos y compañeros.</span></li>
+          <li><b>Social</b><span>De 1,20 m a 3,60 m — relaciones laborales y académicas.</span></li>
+          <li><b>Pública</b><span>Más de 3,60 m — conferencias y exposiciones.</span></li>
+        </ul>
+        <p class="ejemplo">En una exposición, desplazarse con calma hacia el público al presentar una idea clave ayuda a captar la atención; caminar de un lado a otro sin propósito distrae.</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="tema12" data-unidad="unidad2">
+    <div class="capitulo revela">
+      <div class="numero">12</div>
+      <div>
+        <h3>Los gestos y la expresión facial</h3>
+        <p>Los gestos son movimientos de las manos, los brazos y la cabeza que expresan o acompañan una idea. El rostro, por su parte, es el principal espejo de las emociones.</p>
+
+        <svg class="icono vino revela" viewBox="0 0 40 40" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"><circle cx="20" cy="20" r="15"/><circle cx="14.5" cy="16" r="1.5" fill="currentColor" stroke="none"/><circle cx="25.5" cy="16" r="1.5" fill="currentColor" stroke="none"/><path d="M13 24c2 3 4.5 4.5 7 4.5s5-1.5 7-4.5"/></svg>
+
+        <p class="sub">Clasificación de los gestos (Ekman y Friesen)</p>
+        <ul class="lista-elementos">
+          <li><b>Emblemas</b><span>Sustituyen palabras: el pulgar arriba significa «bien».</span></li>
+          <li><b>Ilustradores</b><span>Acompañan lo que se dice: indicar tamaño con las manos.</span></li>
+          <li><b>Reguladores</b><span>Controlan la conversación: asentir con la cabeza.</span></li>
+          <li><b>Adaptadores</b><span>Liberan tensión: tocarse el cabello o jugar con un bolígrafo.</span></li>
+          <li><b>Muestras de afecto</b><span>Expresan emociones a través del rostro y el cuerpo.</span></li>
+        </ul>
+
+        <p class="sub bloque-sub">La expresión facial</p>
+        <p>Las investigaciones de Paul Ekman identificaron seis <strong>emociones básicas</strong> que se reconocen en casi todas las culturas: alegría, tristeza, ira, miedo, sorpresa y asco. Una sonrisa sincera, por ejemplo, involucra también los músculos alrededor de los ojos.</p>
+        <div class="analisis-oracion">
+          <div class="desglose-oracion">
+            <div class="parte-oracion"><strong>Alegría</strong><span>Comisuras hacia arriba, ojos entrecerrados.</span></div>
+            <div class="parte-oracion"><strong>Sorpresa</strong><span>Cejas elevadas, boca abierta.</span></div>
+            <div class="parte-oracion"><strong>Tristeza</strong><span>Comisuras y párpados caídos.</span></div>
+            <div class="parte-oracion"><strong>Ira</strong><span>Cejas juntas, labios apretados.</span></div>
+            <div class="parte-oracion"><strong>Miedo</strong><span>Ojos muy abiertos, cejas tensas.</span></div>
+            <div class="parte-oracion"><strong>Asco</strong><span>Nariz arrugada, labio superior elevado.</span></div>
+          </div>
+        </div>
+        <p class="nota"><strong>Coherencia —</strong> cuando el gesto contradice la palabra (decir «estoy tranquila» mientras se aprietan las manos), el receptor suele creer más al lenguaje no verbal.</p>
+      </div>
+    </div>
+  </section>
+
+  <p class="tematica revela">Paralingüística</p>
+
+  <section id="tema13" data-unidad="unidad2">
+    <div class="capitulo revela">
+      <div class="numero">13</div>
+      <div>
+        <h3>Paralingüística y funciones de la voz</h3>
+        <p>La paralingüística estudia los <strong>elementos vocales que acompañan a las palabras</strong> sin ser palabras: el tono, el volumen, la velocidad, las pausas, los silencios y sonidos como la risa o el suspiro. Una misma frase puede significar cosas distintas según cómo se pronuncie.</p>
+
+        <svg class="icono revela" viewBox="0 0 40 40" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"><path d="M4 20h4l3-8 4 16 4-22 4 26 4-18 3 6h6"/></svg>
+        <div class="video-marco revela">
+          <span class="etiqueta">Video · Paralingüística: lo que comunica la voz</span>
+          <div class="video-caja"><iframe src="https://www.youtube-nocookie.com/embed/uZZswrv5DX8?rel=0" title="Paralingüística: lo que comunica la voz" loading="lazy" allowfullscreen></iframe></div>
+          <a class="ver-youtube" href="https://www.youtube.com/watch?v=uZZswrv5DX8" target="_blank" rel="noopener">Ver en YouTube</a>
+        </div>
+        <p class="ejemplo">«¿Ya terminaste?» puede ser una pregunta amable, un reclamo o una expresión de sorpresa: lo decide la entonación.</p>
+
+        <p class="sub bloque-sub">Funciones de la voz</p>
+        <ul class="lista-elementos">
+          <li><b>Informativa</b><span>Transmite el contenido del mensaje con claridad.</span></li>
+          <li><b>Expresiva</b><span>Revela emociones y estados de ánimo.</span></li>
+          <li><b>Persuasiva</b><span>Convence y motiva gracias a la seguridad y la energía.</span></li>
+          <li><b>Enfática</b><span>Destaca las ideas importantes con cambios de tono o volumen.</span></li>
+          <li><b>Reguladora</b><span>Marca los turnos y el ritmo de la conversación.</span></li>
+          <li><b>Identificadora</b><span>Permite reconocer a una persona por su voz.</span></li>
+        </ul>
+
+        <p class="sub bloque-sub">Las pausas y el silencio</p>
+        <p>Una pausa breve antes de una idea importante genera expectativa; el silencio después de una pregunta invita a reflexionar. Las muletillas («eh», «este», «o sea») restan credibilidad y conviene reemplazarlas por pausas.</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="tema14" data-unidad="unidad2">
+    <div class="capitulo revela">
+      <div class="numero">14</div>
+      <div>
+        <h3>Características de la voz</h3>
+        <p>Toda voz tiene cualidades físicas que podemos aprender a controlar para comunicar mejor.</p>
+
+        <svg class="icono vino revela" viewBox="0 0 40 40" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"><path d="M6 16v8h6l8 7V9l-8 7z"/><path d="M26 14c2 2 2 10 0 12M30 10c4 4 4 16 0 20"/></svg>
+        <div class="video-marco revela">
+          <span class="etiqueta">Video · Paralingüística, prosodia y la voz</span>
+          <div class="video-caja"><iframe src="https://www.youtube-nocookie.com/embed/9fFJYMwurQY?rel=0" title="Paralingüística, prosodia y la voz" loading="lazy" allowfullscreen></iframe></div>
+          <a class="ver-youtube" href="https://www.youtube.com/watch?v=9fFJYMwurQY" target="_blank" rel="noopener">Ver en YouTube</a>
+        </div>
+
+        <ul class="lista-elementos">
+          <li><b>Tono</b><span>Altura de la voz: aguda o grave. Depende de la vibración de las cuerdas vocales.</span></li>
+          <li><b>Timbre</b><span>Cualidad única que permite distinguir una voz de otra.</span></li>
+          <li><b>Intensidad</b><span>Volumen o fuerza: fuerte o suave. Debe adaptarse al espacio y al público.</span></li>
+          <li><b>Velocidad</b><span>Rapidez con que se habla. Lo recomendable en una exposición es un ritmo moderado.</span></li>
+          <li><b>Entonación</b><span>Variaciones del tono que dan sentido: afirmación, pregunta o exclamación.</span></li>
+          <li><b>Ritmo</b><span>Combinación de acentos, velocidad y pausas que da fluidez al discurso.</span></li>
+        </ul>
+        <p class="nota"><strong>Voz monótona —</strong> hablar siempre con el mismo tono, volumen y velocidad hace que el público pierda la atención. Variar estas cualidades mantiene vivo el mensaje.</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="tema15" data-unidad="unidad2">
+    <div class="capitulo revela">
+      <div class="numero">15</div>
+      <div>
+        <h3>Habilidades de la articulación de la voz</h3>
+        <p>Articular es <strong>pronunciar con claridad</strong> cada sonido, sílaba y palabra mediante el movimiento coordinado de labios, lengua, mandíbula y paladar. Una buena articulación hace que el mensaje se entienda sin esfuerzo.</p>
+
+        <svg class="icono revela" viewBox="0 0 40 40" fill="none" stroke="currentColor" stroke-width="1.4"><rect x="15" y="5" width="10" height="18" rx="5"/><path d="M10 18v2a10 10 0 0020 0v-2M20 30v6M14 36h12"/></svg>
+        <div class="video-marco revela">
+          <span class="etiqueta">Video · Ejercicios de dicción y vocalización</span>
+          <div class="video-caja"><iframe src="https://www.youtube-nocookie.com/embed/BkQJDGblges?rel=0" title="Mejora tu dicción y vocalización con ejercicios prácticos" loading="lazy" allowfullscreen></iframe></div>
+          <a class="ver-youtube" href="https://www.youtube.com/watch?v=BkQJDGblges" target="_blank" rel="noopener">Ver en YouTube</a>
+        </div>
+
+        <p class="sub bloque-sub">Habilidades que se pueden entrenar</p>
+        <ul class="lista-elementos">
+          <li><b>Respiración</b><span>Respiración diafragmática para sostener la voz sin cansarse.</span></li>
+          <li><b>Vocalización</b><span>Abrir bien la boca y marcar las vocales.</span></li>
+          <li><b>Dicción</b><span>Pronunciar correctamente las consonantes y las palabras completas.</span></li>
+          <li><b>Proyección</b><span>Hacer llegar la voz al fondo del salón sin gritar.</span></li>
+          <li><b>Modulación</b><span>Variar el tono y la intensidad según la intención.</span></li>
+          <li><b>Fluidez</b><span>Hablar sin cortes innecesarios ni muletillas.</span></li>
+        </ul>
+
+        <p class="sub bloque-sub">Rutina breve de práctica</p>
+        <ol class="pasos">
+          <li><b>Calienta</b> labios y lengua: vibra los labios («brrr») y estira la lengua.</li>
+          <li><b>Exagera</b> las vocales: A – E – I – O – U, abriendo bien la boca.</li>
+          <li><b>Lee en voz alta</b> con un lápiz horizontal entre los dientes y luego sin él.</li>
+          <li><b>Practica</b> trabalenguas, primero despacio y luego más rápido.</li>
+        </ol>
+        <p class="ejemplo">«Tres tristes tigres tragaban trigo en un trigal.»</p>
+
+        <div class="video-marco revela">
+          <span class="etiqueta">Video · Articulación y dicción</span>
+          <div class="video-caja"><iframe src="https://www.youtube-nocookie.com/embed/fzKPkIscRdU?rel=0" title="Articulación y dicción" loading="lazy" allowfullscreen></iframe></div>
+          <a class="ver-youtube" href="https://www.youtube.com/watch?v=fzKPkIscRdU" target="_blank" rel="noopener">Ver en YouTube</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="unidad" id="unidad3" data-unidad="unidad3">
+    <div class="unidad-cabecera revela">
+      <span class="unidad-romano" aria-hidden="true">III</span>
+      <p class="unidad-etiqueta">Unidad 3</p>
+      <h2>Búsqueda de información científica</h2>
+      <div class="unidad-meta"><span>24 horas</span><span>Etapas del proceso de búsqueda</span><span>Técnicas de búsqueda</span><span>Bases de datos</span></div>
+      <p class="unidad-resultado"><b>Resultado de aprendizaje</b>Emplea información científica de bases de datos y de fuentes bibliográficas académicas mediante repositorios institucionales y/o universales.</p>
+      <ul class="unidad-temas">
+        <li><a href="#tema16"><span>16</span>Nivel y cobertura de la búsqueda</a></li>
+        <li><a href="#tema17"><span>17</span>Selección de las fuentes de información</a></li>
+        <li><a href="#tema18"><span>18</span>Estrategia de búsqueda</a></li>
+        <li><a href="#tema19"><span>19</span>Google Académico</a></li>
+        <li><a href="#tema20"><span>20</span>Latindex, SciELO y Scopus</a></li>
+      </ul>
+    </div>
+  </section>
+
+  <p class="tematica revela">Etapas del proceso de búsqueda de información · Técnicas de búsqueda</p>
+
+  <section id="tema16" data-unidad="unidad3">
+    <div class="capitulo revela">
+      <div class="numero">16</div>
+      <div>
+        <h3>Establecer el nivel y la cobertura de la búsqueda</h3>
+        <p>Buscar información académica no es escribir una palabra en un buscador y quedarse con el primer resultado: es un <strong>proceso ordenado</strong>. La primera etapa consiste en definir qué necesitamos, con qué profundidad y dentro de qué límites.</p>
+
+        <svg class="icono revela" viewBox="0 0 40 40" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"><circle cx="17" cy="17" r="10"/><path d="M24.5 24.5L35 35"/><path d="M12 17h10M17 12v10"/></svg>
+
+        <p class="sub">Etapas del proceso de búsqueda</p>
+        <ol class="pasos">
+          <li><b>Establecer el nivel y la cobertura</b> de lo que se necesita.</li>
+          <li><b>Seleccionar las fuentes</b> de información que se van a utilizar.</li>
+          <li><b>Elaborar la estrategia</b> de búsqueda y ejecutarla.</li>
+          <li><b>Evaluar, organizar y citar</b> los resultados obtenidos.</li>
+        </ol>
+
+        <p class="sub bloque-sub">El nivel: ¿qué tan profunda debe ser la búsqueda?</p>
+        <ul class="lista-elementos">
+          <li><b>Básico</b><span>Información general e introductoria: diccionarios, enciclopedias, manuales.</span></li>
+          <li><b>Intermedio</b><span>Libros especializados, tesis y artículos de revisión.</span></li>
+          <li><b>Avanzado</b><span>Artículos científicos revisados por pares, informes técnicos y normativa.</span></li>
+        </ul>
+
+        <p class="sub bloque-sub">La cobertura: ¿cuáles son los límites?</p>
+        <ul class="lista-elementos">
+          <li><b>Temporal</b><span>Años de publicación, por ejemplo, los últimos 5 años.</span></li>
+          <li><b>Geográfica</b><span>Ecuador, América Latina o estudios internacionales.</span></li>
+          <li><b>Idiomática</b><span>Español, inglés, portugués…</span></li>
+          <li><b>Documental</b><span>Artículos, libros, tesis, leyes, estadísticas.</span></li>
+        </ul>
+        <p class="ejemplo">Tema: «Uso de la facturación electrónica en las pymes». Nivel avanzado; cobertura de 2019 a 2026, en América Latina, en español e inglés, solo artículos científicos y tesis.</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="tema17" data-unidad="unidad3">
+    <div class="capitulo revela">
+      <div class="numero">17</div>
+      <div>
+        <h3>Seleccionar las fuentes de información</h3>
+        <p>Una fuente de información es cualquier recurso que contiene datos útiles para nuestra investigación. Elegirlas bien determina la calidad de un trabajo académico.</p>
+
+        <svg class="icono vino revela" viewBox="0 0 40 40" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"><path d="M6 8h9v26H6zM15 8h9v26h-9z"/><path d="M26 10l8-2 5 25-8 2z"/></svg>
+
+        <p class="sub">Tipos de fuentes</p>
+        <table class="tabla-comparativa">
+          <tr><th>Tipo</th><th>Qué contiene</th><th>Ejemplos</th></tr>
+          <tr><td><b>Primarias</b></td><td>Información original, de primera mano</td><td>Artículos de investigación, tesis, leyes, estados financieros</td></tr>
+          <tr><td><b>Secundarias</b></td><td>Analizan o resumen fuentes primarias</td><td>Libros de texto, artículos de revisión, bases de datos</td></tr>
+          <tr><td><b>Terciarias</b></td><td>Organizan y guían hacia otras fuentes</td><td>Catálogos, directorios, bibliografías</td></tr>
+        </table>
+
+        <p class="sub bloque-sub">¿Es confiable esta fuente?</p>
+        <ul class="lista-elementos">
+          <li><b>Autoría</b><span>¿Quién lo escribió? ¿Es experto o institución reconocida?</span></li>
+          <li><b>Actualidad</b><span>¿La fecha es adecuada para el tema?</span></li>
+          <li><b>Rigor</b><span>¿Fue revisado por pares? ¿Cita sus fuentes?</span></li>
+          <li><b>Objetividad</b><span>¿Informa o intenta vender algo?</span></li>
+          <li><b>Pertinencia</b><span>¿Responde realmente a mi pregunta?</span></li>
+        </ul>
+        <p class="nota"><strong>Repositorios institucionales —</strong> las universidades publican en acceso abierto las tesis y artículos de su comunidad. El repositorio de la Universidad Técnica de Ambato es una fuente valiosa para conocer investigaciones del contexto ecuatoriano.</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="tema18" data-unidad="unidad3">
+    <div class="capitulo revela">
+      <div class="numero">18</div>
+      <div>
+        <h3>Elaborar la estrategia de búsqueda</h3>
+        <p>La estrategia de búsqueda es el <strong>plan para encontrar la información</strong>: qué palabras usar, cómo combinarlas y dónde buscarlas. El resultado es una <em>ecuación de búsqueda</em> que se puede repetir y mejorar.</p>
+
+        <svg class="icono revela" viewBox="0 0 40 40" fill="none" stroke="currentColor" stroke-width="1.4"><circle cx="15" cy="20" r="10"/><circle cx="25" cy="20" r="10"/></svg>
+        <div class="video-marco revela">
+          <span class="etiqueta">Video · Estrategias de búsqueda con operadores booleanos</span>
+          <div class="video-caja"><iframe src="https://www.youtube-nocookie.com/embed/ttOo94ZG1dg?rel=0" title="Estrategias de búsqueda de información: uso de los operadores booleanos" loading="lazy" allowfullscreen></iframe></div>
+          <a class="ver-youtube" href="https://www.youtube.com/watch?v=ttOo94ZG1dg" target="_blank" rel="noopener">Ver en YouTube</a>
+        </div>
+
+        <p class="sub bloque-sub">Pasos</p>
+        <ol class="pasos">
+          <li><b>Formular</b> la pregunta de investigación.</li>
+          <li><b>Extraer</b> los conceptos clave y buscar sinónimos y equivalentes en inglés.</li>
+          <li><b>Combinar</b> los términos con operadores booleanos y otros símbolos.</li>
+          <li><b>Aplicar filtros</b>: año, idioma, tipo de documento, área.</li>
+          <li><b>Revisar y ajustar</b>: si hay demasiados resultados, restringir; si hay pocos, ampliar.</li>
+        </ol>
+
+        <p class="sub bloque-sub">Operadores y técnicas</p>
+        <ul class="lista-elementos">
+          <li><b>AND</b><span>Ambos términos deben aparecer. Reduce resultados.</span></li>
+          <li><b>OR</b><span>Aparece uno u otro término (sinónimos). Amplía resultados.</span></li>
+          <li><b>NOT</b><span>Excluye un término.</span></li>
+          <li><b>" "</b><span>Busca la frase exacta: "control interno".</span></li>
+          <li><b>*</b><span>Truncamiento: contab* encuentra contable, contabilidad…</span></li>
+          <li><b>( )</b><span>Agrupa términos para combinar operadores.</span></li>
+        </ul>
+        <p class="codigo">("control interno" OR "internal control") AND (pymes OR "small business") NOT bancos</p>
+
+        <div class="video-marco revela">
+          <span class="etiqueta">Video · Cómo crear una estrategia y una ecuación de búsqueda</span>
+          <div class="video-caja"><iframe src="https://www.youtube-nocookie.com/embed/jVP9AN5WqMg?rel=0" title="Cómo crear una estrategia de búsqueda y una ecuación canónica" loading="lazy" allowfullscreen></iframe></div>
+          <a class="ver-youtube" href="https://www.youtube.com/watch?v=jVP9AN5WqMg" target="_blank" rel="noopener">Ver en YouTube</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <p class="tematica revela">Bases de datos</p>
+
+  <section id="tema19" data-unidad="unidad3">
+    <div class="capitulo revela">
+      <div class="numero">19</div>
+      <div>
+        <h3>Google Académico</h3>
+        <p>Google Académico (Google Scholar) es un <strong>buscador gratuito especializado en literatura científica</strong>: artículos, tesis, libros, resúmenes y documentos de universidades, editoriales y repositorios. Se accede desde <a href="https://scholar.google.com/" target="_blank" rel="noopener">scholar.google.com</a>.</p>
+
+        <svg class="icono vino revela" viewBox="0 0 40 40" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linejoin="round"><path d="M3 15l17-8 17 8-17 8z"/><path d="M10 18.5V27c0 2.5 4.5 5 10 5s10-2.5 10-5v-8.5M37 15v10"/></svg>
+        <div class="video-marco revela">
+          <span class="etiqueta">Video · Cómo usar Google Académico</span>
+          <div class="video-caja"><iframe src="https://www.youtube-nocookie.com/embed/kUJchIkOXXU?rel=0" title="Cómo usar Google Académico para buscar información científica" loading="lazy" allowfullscreen></iframe></div>
+          <a class="ver-youtube" href="https://www.youtube.com/watch?v=kUJchIkOXXU" target="_blank" rel="noopener">Ver en YouTube</a>
+        </div>
+
+        <p class="sub bloque-sub">Funciones útiles</p>
+        <ul class="lista-elementos">
+          <li><b>Citar</b><span>Genera la referencia en formato APA, MLA y otros.</span></li>
+          <li><b>Citado por</b><span>Muestra cuántos trabajos citan ese documento.</span></li>
+          <li><b>Artículos relacionados</b><span>Sugiere documentos sobre el mismo tema.</span></li>
+          <li><b>Filtro de fechas</b><span>Limita los resultados por año de publicación.</span></li>
+          <li><b>Búsqueda avanzada</b><span>Por autor, revista, frase exacta o palabras en el título.</span></li>
+          <li><b>Mi biblioteca y alertas</b><span>Guarda artículos y avisa de nuevas publicaciones.</span></li>
+        </ul>
+        <p class="nota"><strong>Ojo —</strong> Google Académico reúne documentos de calidad muy variada. Comprueba siempre en qué revista se publicó el artículo y si fue revisado por pares.</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="tema20" data-unidad="unidad3">
+    <div class="capitulo revela">
+      <div class="numero">20</div>
+      <div>
+        <h3>Latindex, SciELO y Scopus</h3>
+        <p>Las bases de datos científicas reúnen revistas que cumplen criterios de calidad. Conocerlas permite encontrar información confiable y, más adelante, elegir dónde publicar.</p>
+
+        <svg class="icono revela" viewBox="0 0 40 40" fill="none" stroke="currentColor" stroke-width="1.4"><ellipse cx="20" cy="9" rx="13" ry="4.5"/><path d="M7 9v22c0 2.5 5.8 4.5 13 4.5S33 33.5 33 31V9"/><path d="M7 16.5c0 2.5 5.8 4.5 13 4.5s13-2 13-4.5M7 24c0 2.5 5.8 4.5 13 4.5S33 26.5 33 24"/></svg>
+
+        <p class="sub bloque-sub">Latindex</p>
+        <p>Sistema Regional de Información en Línea para Revistas Científicas de <strong>América Latina, el Caribe, España y Portugal</strong>, coordinado desde la Universidad Nacional Autónoma de México (UNAM) desde 1995. Ofrece un <em>Directorio</em> de revistas y un <em>Catálogo</em> con las que cumplen criterios de calidad editorial. Sirve sobre todo para verificar si una revista es seria. <a href="https://www.latindex.org/" target="_blank" rel="noopener">latindex.org</a></p>
+        <div class="video-marco revela">
+          <span class="etiqueta">Video · Cómo buscar revistas en Latindex</span>
+          <div class="video-caja"><iframe src="https://www.youtube-nocookie.com/embed/cuWYwoIbV1U?rel=0" title="Cómo buscar revistas científicas en Latindex" loading="lazy" allowfullscreen></iframe></div>
+          <a class="ver-youtube" href="https://www.youtube.com/watch?v=cuWYwoIbV1U" target="_blank" rel="noopener">Ver en YouTube</a>
+        </div>
+
+        <p class="sub bloque-sub">SciELO</p>
+        <p><em>Scientific Electronic Library Online</em>: biblioteca electrónica nacida en Brasil a finales de los años noventa que publica <strong>revistas científicas de acceso abierto</strong> a texto completo. Está organizada en colecciones por país, entre ellas la de Ecuador. <a href="https://scielo.org/es/" target="_blank" rel="noopener">scielo.org</a></p>
+        <div class="video-marco revela">
+          <span class="etiqueta">Video · Búsqueda avanzada en SciELO</span>
+          <div class="video-caja"><iframe src="https://www.youtube-nocookie.com/embed/WRCfpVR6IJU?rel=0" title="Búsqueda avanzada en SciELO" loading="lazy" allowfullscreen></iframe></div>
+          <a class="ver-youtube" href="https://www.youtube.com/watch?v=WRCfpVR6IJU" target="_blank" rel="noopener">Ver en YouTube</a>
+        </div>
+
+        <p class="sub bloque-sub">Scopus</p>
+        <p>Base de datos de <strong>resúmenes y citas</strong> de la editorial Elsevier, lanzada en 2004. Es una de las más grandes del mundo y reúne revistas con revisión por pares, libros y actas de congresos. Ofrece métricas como el índice h y CiteScore. Su acceso suele ser por suscripción institucional. <a href="https://www.scopus.com/" target="_blank" rel="noopener">scopus.com</a></p>
+        <div class="video-marco revela">
+          <span class="etiqueta">Video · Búsqueda en Scopus y Latindex 2.0</span>
+          <div class="video-caja"><iframe src="https://www.youtube-nocookie.com/embed/IiPviRXe5ZA?rel=0" title="Búsqueda con Scopus IA y recuperación de artículos en Latindex 2.0" loading="lazy" allowfullscreen></iframe></div>
+          <a class="ver-youtube" href="https://www.youtube.com/watch?v=IiPviRXe5ZA" target="_blank" rel="noopener">Ver en YouTube</a>
+        </div>
+
+        <div class="tabla-scroll">
+          <table class="tabla-comparativa" style="margin-top:30px;">
+            <tr><th></th><th>Google Académico</th><th>Latindex</th><th>SciELO</th><th>Scopus</th></tr>
+            <tr><td><b>Tipo</b></td><td>Buscador</td><td>Sistema de información de revistas</td><td>Biblioteca de revistas</td><td>Base de resúmenes y citas</td></tr>
+            <tr><td><b>Alcance</b></td><td>Mundial</td><td>Iberoamérica</td><td>Iberoamérica y Sudáfrica</td><td>Mundial</td></tr>
+            <tr><td><b>Acceso</b></td><td>Gratuito</td><td>Gratuito</td><td>Abierto</td><td>Suscripción</td></tr>
+            <tr><td><b>Texto completo</b></td><td>A veces</td><td>Enlaza a la revista</td><td>Sí</td><td>Resumen y enlace</td></tr>
+          </table>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="unidad" id="unidad4" data-unidad="unidad4">
+    <div class="unidad-cabecera revela">
+      <span class="unidad-romano" aria-hidden="true">IV</span>
+      <p class="unidad-etiqueta">Unidad 4</p>
+      <h2>Herramientas tecnológicas para comunicar</h2>
+      <div class="unidad-meta"><span>24 horas</span><span>Procesador de textos y hoja de cálculo</span><span>Software y aplicaciones</span><span>Herramientas de IA generativa</span></div>
+      <p class="unidad-resultado"><b>Resultado de aprendizaje</b>Demuestra eficientemente la utilización de procesadores de texto, hojas de cálculo y representaciones gráficas en el ámbito académico y profesional a través de herramientas tecnológicas.</p>
+      <ul class="unidad-temas">
+        <li><a href="#tema21"><span>21</span>Generalidades y aplicaciones de los procesadores de texto</a></li>
+        <li><a href="#tema22"><span>22</span>Usos de las presentaciones para transmitir información</a></li>
+        <li><a href="#tema23"><span>23</span>Presentaciones con PowerPoint, Prezi y Canva</a></li>
+        <li><a href="#tema24"><span>24</span>Presentaciones con trabajo colaborativo</a></li>
+        <li><a href="#tema25"><span>25</span>Microsoft Copilot, Gemini e IA</a></li>
+      </ul>
+    </div>
+  </section>
+
+  <p class="tematica revela">Procesador de textos · Hoja de cálculo</p>
+
+  <section id="tema21" data-unidad="unidad4">
+    <div class="capitulo revela">
+      <div class="numero">21</div>
+      <div>
+        <h3>Generalidades y aplicaciones de los procesadores de texto en el ámbito profesional</h3>
+        <p>Un procesador de textos es un programa para <strong>crear, editar, dar formato e imprimir documentos</strong>. Los más usados son Microsoft Word, Google Docs y LibreOffice Writer.</p>
+
+        <svg class="icono revela" viewBox="0 0 40 40" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><rect x="7" y="4" width="26" height="32" rx="1.5"/><path d="M12 12l2.5 9 3-7 3 7 2.5-9M12 27h16M12 31h10"/></svg>
+        <div class="video-marco revela">
+          <span class="etiqueta">Video · Curso de Word para principiantes</span>
+          <div class="video-caja"><iframe src="https://www.youtube-nocookie.com/embed/x2jMazE8t_k?rel=0" title="Curso Word: introducción para principiantes" loading="lazy" allowfullscreen></iframe></div>
+          <a class="ver-youtube" href="https://www.youtube.com/watch?v=x2jMazE8t_k" target="_blank" rel="noopener">Ver en YouTube</a>
+        </div>
+
+        <p class="sub bloque-sub">Herramientas esenciales</p>
+        <ul class="lista-elementos">
+          <li><b>Formato</b><span>Fuente, tamaño, alineación, interlineado y márgenes.</span></li>
+          <li><b>Estilos</b><span>Títulos y subtítulos uniformes; permiten crear el índice automático.</span></li>
+          <li><b>Tablas e imágenes</b><span>Organizan datos y apoyan visualmente el contenido.</span></li>
+          <li><b>Encabezado y pie</b><span>Números de página, logotipos y datos del documento.</span></li>
+          <li><b>Referencias</b><span>Citas y bibliografía en formato APA de forma automática.</span></li>
+          <li><b>Revisión</b><span>Ortografía, comentarios y control de cambios.</span></li>
+        </ul>
+
+        <p class="sub bloque-sub">En el ámbito profesional contable</p>
+        <p>Se utiliza para redactar <strong>informes de auditoría, cartas a la gerencia, oficios, memorandos, actas, contratos y manuales de procedimientos</strong>. Un documento bien formateado transmite orden y seriedad.</p>
+        <p class="nota"><strong>Formato académico APA 7 —</strong> fuente legible (por ejemplo, Times New Roman 12 o Calibri 11), interlineado doble, márgenes de 2,54 cm y sangría de 1,27 cm al inicio de cada párrafo.</p>
+      </div>
+    </div>
+  </section>
+
+  <p class="tematica revela">Software y aplicaciones · Herramientas de IA generativa</p>
+
+  <section id="tema22" data-unidad="unidad4">
+    <div class="capitulo revela">
+      <div class="numero">22</div>
+      <div>
+        <h3>Usos de las presentaciones para la transmisión de la información</h3>
+        <p>Una presentación es un <strong>apoyo visual</strong> para una exposición oral: no reemplaza a quien expone, sino que ayuda al público a seguir, comprender y recordar las ideas. Combina texto breve, imágenes, gráficos y esquemas para transmitir información de forma ordenada.</p>
+
+        <svg class="icono revela" viewBox="0 0 40 40" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"><rect x="4" y="6" width="32" height="21"/><path d="M20 27v6M13 35l7-2 7 2M10 21l6-6 4 4 8-8"/></svg>
+        <div class="video-marco revela">
+          <span class="etiqueta">Video · Cómo hacer una buena presentación de diapositivas</span>
+          <div class="video-caja"><iframe src="https://www.youtube-nocookie.com/embed/SzbvSulJMD0?rel=0" title="Cómo hacer una buena presentación de diapositivas" loading="lazy" allowfullscreen></iframe></div>
+          <a class="ver-youtube" href="https://www.youtube.com/watch?v=SzbvSulJMD0" target="_blank" rel="noopener">Ver en YouTube</a>
+        </div>
+
+        <p class="sub bloque-sub">¿Para qué se usan?</p>
+        <ul class="lista-elementos">
+          <li><b>Académico</b><span>Exposiciones de clase, defensa de proyectos y tesis, ponencias.</span></li>
+          <li><b>Profesional</b><span>Presentar resultados financieros, informes de auditoría y propuestas a la gerencia.</span></li>
+          <li><b>Capacitación</b><span>Explicar procedimientos, normas o el uso de un sistema.</span></li>
+          <li><b>Comercial</b><span>Dar a conocer productos, servicios o proyectos de inversión.</span></li>
+          <li><b>Visualizar datos</b><span>Convertir cifras en gráficos fáciles de interpretar.</span></li>
+        </ul>
+
+        <p class="sub bloque-sub">Estructura de una presentación</p>
+        <div class="analisis-oracion">
+          <div class="desglose-oracion">
+            <div class="parte-oracion"><strong>Inicio</strong><span>Portada, objetivo y agenda de lo que se tratará.</span></div>
+            <div class="parte-oracion"><strong>Desarrollo</strong><span>Las ideas principales, una por diapositiva, con apoyos visuales.</span></div>
+            <div class="parte-oracion"><strong>Cierre</strong><span>Conclusiones, preguntas y fuentes consultadas.</span></div>
+          </div>
+        </div>
+
+        <p class="sub bloque-sub">Recomendaciones de diseño</p>
+        <ul class="lista-elementos">
+          <li><b>Una idea</b><span>Por diapositiva, con un título claro.</span></li>
+          <li><b>Poco texto</b><span>Frases cortas o palabras clave, no párrafos.</span></li>
+          <li><b>Legibilidad</b><span>Fuente de 24 puntos o más y buen contraste.</span></li>
+          <li><b>Imágenes</b><span>De buena calidad y con derechos de uso.</span></li>
+          <li><b>Coherencia</b><span>Mismos colores, fuentes y estilo en todo el archivo.</span></li>
+        </ul>
+        <p class="nota"><strong>Regla 10-20-30 —</strong> propuesta por Guy Kawasaki: no más de 10 diapositivas, no más de 20 minutos y letra no menor de 30 puntos. Es una guía útil para no saturar al público.</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="tema23" data-unidad="unidad4">
+    <div class="capitulo revela">
+      <div class="numero">23</div>
+      <div>
+        <h3>Aplicación de presentaciones utilizando PowerPoint, Prezi y Canva</h3>
+        <p>Existen varias herramientas para crear presentaciones. Elegir la adecuada depende del propósito, del público y del tipo de información que se quiere transmitir.</p>
+
+        <svg class="icono vino revela" viewBox="0 0 40 40" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="8" width="20" height="14"/><circle cx="29" cy="24" r="7"/><path d="M12 22v8M6 36l6-6 6 6"/></svg>
+
+        <div class="tabla-scroll">
+          <table class="tabla-comparativa">
+            <tr><th></th><th>PowerPoint</th><th>Prezi</th><th>Canva</th></tr>
+            <tr><td><b>Estructura</b></td><td>Diapositivas lineales</td><td>Lienzo con zoom y recorrido</td><td>Diapositivas con plantillas de diseño</td></tr>
+            <tr><td><b>Punto fuerte</b></td><td>Control total, uso sin conexión</td><td>Presentaciones dinámicas y no lineales</td><td>Diseño atractivo y fácil</td></tr>
+            <tr><td><b>Ideal para</b></td><td>Informes y exposiciones formales</td><td>Mostrar relaciones entre ideas</td><td>Trabajos creativos y redes</td></tr>
+          </table>
+        </div>
+
+        <p class="sub bloque-sub">Microsoft PowerPoint</p>
+        <p>Programa de Microsoft 365 basado en <strong>diapositivas</strong>. Ofrece diseños, transiciones, animaciones, inserción de tablas y gráficos de Excel, notas del orador y la vista Moderador para exponer con apoyo.</p>
+        <div class="video-marco revela">
+          <span class="etiqueta">Video · Presentación profesional en PowerPoint desde cero</span>
+          <div class="video-caja"><iframe src="https://www.youtube-nocookie.com/embed/mKr1-9JEq-M?rel=0" title="Cómo crear una presentación profesional en PowerPoint desde cero" loading="lazy" allowfullscreen></iframe></div>
+          <a class="ver-youtube" href="https://www.youtube.com/watch?v=mKr1-9JEq-M" target="_blank" rel="noopener">Ver en YouTube</a>
+        </div>
+
+        <p class="sub bloque-sub">Prezi</p>
+        <p>Herramienta en línea que trabaja sobre un <strong>lienzo</strong> en lugar de diapositivas: la cámara se desplaza y hace zoom entre las ideas, lo que permite mostrar cómo se relacionan entre sí.</p>
+        <div class="video-marco revela">
+          <span class="etiqueta">Video · Presentaciones en Prezi</span>
+          <div class="video-caja"><iframe src="https://www.youtube-nocookie.com/embed/A8gOH2WIaAY?rel=0" title="Cómo hacer una presentación en Prezi" loading="lazy" allowfullscreen></iframe></div>
+          <a class="ver-youtube" href="https://www.youtube.com/watch?v=A8gOH2WIaAY" target="_blank" rel="noopener">Ver en YouTube</a>
+        </div>
+
+        <p class="sub bloque-sub">Canva</p>
+        <p>Plataforma de diseño en línea con miles de <strong>plantillas</strong>, imágenes, íconos y tipografías. Permite crear presentaciones atractivas sin conocimientos de diseño y exportarlas a PDF o PowerPoint.</p>
+        <div class="video-marco revela">
+          <span class="etiqueta">Video · Presentaciones en Canva desde cero</span>
+          <div class="video-caja"><iframe src="https://www.youtube-nocookie.com/embed/UVn3JmqYEJo?rel=0" title="Cómo hacer presentaciones en Canva desde cero" loading="lazy" allowfullscreen></iframe></div>
+          <a class="ver-youtube" href="https://www.youtube.com/watch?v=UVn3JmqYEJo" target="_blank" rel="noopener">Ver en YouTube</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="tema24" data-unidad="unidad4">
+    <div class="capitulo revela">
+      <div class="numero">24</div>
+      <div>
+        <h3>Aplicación de presentaciones con trabajo colaborativo</h3>
+        <p>Las herramientas en la nube permiten que varias personas <strong>construyan la misma presentación al mismo tiempo</strong> desde distintos lugares. PowerPoint lo hace guardando el archivo en OneDrive o Teams; Canva y Prezi permiten invitar colaboradores al diseño; y Google Presentaciones (Slides) funciona desde Google Drive.</p>
+
+        <p class="sub">¿Cómo organizar una presentación en equipo?</p>
+        <ol class="pasos">
+          <li><b>Crear</b> el archivo y compartirlo con el grupo con permiso de edición.</li>
+          <li><b>Acordar</b> la plantilla, colores y tipografía para que el resultado sea uniforme.</li>
+          <li><b>Repartir</b> las diapositivas o secciones entre los integrantes.</li>
+          <li><b>Revisar</b> con comentarios y unificar el estilo antes de exponer.</li>
+          <li><b>Ensayar</b> juntos: cada integrante expone la parte que preparó.</li>
+        </ol>
+
+        <svg class="icono vino revela" viewBox="0 0 40 40" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"><circle cx="12" cy="13" r="4"/><circle cx="28" cy="13" r="4"/><path d="M4 30c0-5 3.5-8 8-8s8 3 8 8M20 30c0-5 3.5-8 8-8s8 3 8 8"/></svg>
+        <div class="video-marco revela">
+          <span class="etiqueta">Video · Trabajar en grupo con Google Drive</span>
+          <div class="video-caja"><iframe src="https://www.youtube-nocookie.com/embed/v4rjQDSAcqw?rel=0" title="Cómo trabajar en grupo y compartir documentos en Google Drive" loading="lazy" allowfullscreen></iframe></div>
+          <a class="ver-youtube" href="https://www.youtube.com/watch?v=v4rjQDSAcqw" target="_blank" rel="noopener">Ver en YouTube</a>
+        </div>
+
+        <p class="sub bloque-sub">Funciones clave</p>
+        <ul class="lista-elementos">
+          <li><b>Compartir</b><span>Por enlace o correo, con permisos de lector, comentarista o editor.</span></li>
+          <li><b>Tiempo real</b><span>Se ven los cambios de cada integrante al instante.</span></li>
+          <li><b>Comentarios</b><span>Permiten sugerir, preguntar y asignar tareas.</span></li>
+          <li><b>Historial</b><span>Guarda versiones anteriores y muestra quién hizo cada cambio.</span></li>
+          <li><b>Chat y videollamada</b><span>Coordinan al equipo sin salir de la presentación (por ejemplo, en Teams).</span></li>
+        </ul>
+        <p class="ejemplo">Un equipo prepara una exposición en Canva: una persona diseña la portada, otra redacta el contenido y otra revisa la ortografía, todas sobre el mismo archivo.</p>
+
+        <div class="video-marco revela">
+          <span class="etiqueta">Video · Editar en tiempo real con OneDrive</span>
+          <div class="video-caja"><iframe src="https://www.youtube-nocookie.com/embed/OAw2RuRtSUA?rel=0" title="Compartir y editar documentos en tiempo real con OneDrive" loading="lazy" allowfullscreen></iframe></div>
+          <a class="ver-youtube" href="https://www.youtube.com/watch?v=OAw2RuRtSUA" target="_blank" rel="noopener">Ver en YouTube</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="tema25" data-unidad="unidad4">
+    <div class="capitulo revela">
+      <div class="numero">25</div>
+      <div>
+        <h3>Utilización de Microsoft Copilot, Gemini e IA</h3>
+        <p>La IA generativa crea contenido nuevo —texto, imágenes, tablas, diapositivas— a partir de instrucciones escritas llamadas <strong><em>prompts</em></strong>. Microsoft Copilot se integra con Word, Excel y PowerPoint; Google Gemini, con Docs, Sheets y Slides. Ambos pueden usarse también como asistentes de conversación.</p>
+
+        <svg class="icono revela" viewBox="0 0 40 40" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linejoin="round"><path d="M20 4l3.5 10.5L34 18l-10.5 3.5L20 32l-3.5-10.5L6 18l10.5-3.5z"/><path d="M32 28l1.2 3.3 3.3 1.2-3.3 1.2L32 37l-1.2-3.3-3.3-1.2 3.3-1.2z"/></svg>
+        <div class="video-marco revela">
+          <span class="etiqueta">Video · Cómo usar Microsoft Copilot</span>
+          <div class="video-caja"><iframe src="https://www.youtube-nocookie.com/embed/QLPzbFRegQc?rel=0" title="Cómo usar Microsoft Copilot: guía para principiantes" loading="lazy" allowfullscreen></iframe></div>
+          <a class="ver-youtube" href="https://www.youtube.com/watch?v=QLPzbFRegQc" target="_blank" rel="noopener">Ver en YouTube</a>
+        </div>
+
+        <p class="sub bloque-sub">Usos académicos y profesionales</p>
+        <ul class="lista-elementos">
+          <li><b>Documentos</b><span>Generar esquemas, mejorar la redacción, resumir textos largos.</span></li>
+          <li><b>Hojas de cálculo</b><span>Explicar o crear fórmulas, analizar datos y sugerir gráficos.</span></li>
+          <li><b>Informes</b><span>Organizar ideas y proponer conclusiones a partir de datos propios.</span></li>
+          <li><b>Presentaciones</b><span>Crear un borrador de diapositivas a partir de un documento.</span></li>
+          <li><b>Estudio</b><span>Explicar conceptos difíciles y generar preguntas de repaso.</span></li>
+        </ul>
+
+        <p class="sub bloque-sub">Cómo escribir un buen <em>prompt</em></p>
+        <div class="analisis-oracion">
+          <div class="desglose-oracion">
+            <div class="parte-oracion"><strong>Rol</strong><span>«Actúa como docente de contabilidad…»</span></div>
+            <div class="parte-oracion"><strong>Tarea y contexto</strong><span>«…explica qué es una conciliación bancaria a estudiantes de primer semestre…»</span></div>
+            <div class="parte-oracion"><strong>Formato</strong><span>«…en cinco pasos y con un ejemplo en tabla.»</span></div>
+          </div>
+        </div>
+
+        <div class="video-marco revela">
+          <span class="etiqueta">Video · Google Gemini para estudiar</span>
+          <div class="video-caja"><iframe src="https://www.youtube-nocookie.com/embed/lJFgFTUGQts?rel=0" title="Cómo usar Google Gemini para estudiar" loading="lazy" allowfullscreen></iframe></div>
+          <a class="ver-youtube" href="https://www.youtube.com/watch?v=lJFgFTUGQts" target="_blank" rel="noopener">Ver en YouTube</a>
+        </div>
+
+        <p class="sub bloque-sub">Uso responsable de la IA</p>
+        <ol class="pasos">
+          <li><b>Verifica</b> la información: la IA puede inventar datos o referencias.</li>
+          <li><b>Declara</b> su uso cuando la utilices en un trabajo académico.</li>
+          <li><b>Protege</b> los datos: no ingreses información confidencial de clientes o empresas.</li>
+          <li><b>Aprende</b> con ella, no copies: la IA es un apoyo, no reemplaza tu criterio profesional.</li>
+        </ol>
       </div>
     </div>
   </section>
@@ -594,6 +1525,99 @@
       </div>
       <p class="actividad-status" data-estado></p>
     </div>
+
+    <div class="actividad revela">
+      <h3>4 · Redacción: ¿qué técnica es?</h3>
+      <p class="actividad-intro">Unidad 1 · Lee cada descripción y selecciona la técnica de redacción que corresponde.</p>
+      <div class="funcion-grupo" data-funciones>
+        <div class="funcion-item" data-correcta="paráfrasis">
+          <p class="vf-enunciado">«Digo lo mismo que el autor, con otras palabras y con una extensión parecida.»</p>
+          <div class="vf-botones"><button class="vf-opcion" data-respuesta="resumen">Resumen</button><button class="vf-opcion" data-respuesta="síntesis">Síntesis</button><button class="vf-opcion" data-respuesta="paráfrasis">Paráfrasis</button><button class="vf-opcion" data-respuesta="ensayo">Ensayo</button></div>
+        </div>
+        <div class="funcion-item" data-correcta="síntesis">
+          <p class="vf-enunciado">«Integro las ideas principales de tres artículos en un solo texto con mis palabras.»</p>
+          <div class="vf-botones"><button class="vf-opcion" data-respuesta="resumen">Resumen</button><button class="vf-opcion" data-respuesta="síntesis">Síntesis</button><button class="vf-opcion" data-respuesta="paráfrasis">Paráfrasis</button><button class="vf-opcion" data-respuesta="ensayo">Ensayo</button></div>
+        </div>
+        <div class="funcion-item" data-correcta="ensayo">
+          <p class="vf-enunciado">«Defiendo mi postura sobre un tema con introducción, desarrollo y conclusión.»</p>
+          <div class="vf-botones"><button class="vf-opcion" data-respuesta="resumen">Resumen</button><button class="vf-opcion" data-respuesta="síntesis">Síntesis</button><button class="vf-opcion" data-respuesta="paráfrasis">Paráfrasis</button><button class="vf-opcion" data-respuesta="ensayo">Ensayo</button></div>
+        </div>
+        <div class="funcion-item" data-correcta="resumen">
+          <p class="vf-enunciado">«Reduzco el texto a sus ideas esenciales respetando el orden del autor.»</p>
+          <div class="vf-botones"><button class="vf-opcion" data-respuesta="resumen">Resumen</button><button class="vf-opcion" data-respuesta="síntesis">Síntesis</button><button class="vf-opcion" data-respuesta="paráfrasis">Paráfrasis</button><button class="vf-opcion" data-respuesta="ensayo">Ensayo</button></div>
+        </div>
+      </div>
+      <p class="actividad-status" data-estado></p>
+    </div>
+
+    <div class="actividad revela">
+      <h3>5 · Une los conceptos de la comunicación no verbal</h3>
+      <p class="actividad-intro">Unidad 2 · Selecciona un concepto de la izquierda y después su definición.</p>
+      <div class="relacion-contenedor" data-relacion>
+        <div class="relacion-columna relacion-izquierda">
+          <button class="opcion-actividad" data-pareja="kinesica">Kinésica</button>
+          <button class="opcion-actividad" data-pareja="proxemica">Proxémica</button>
+          <button class="opcion-actividad" data-pareja="paralinguistica">Paralingüística</button>
+          <button class="opcion-actividad" data-pareja="artefactual">Comunicación artefactual</button>
+        </div>
+        <div class="relacion-columna relacion-derecha">
+          <button class="respuesta-actividad" data-pareja="paralinguistica">Tono, volumen y pausas de la voz</button>
+          <button class="respuesta-actividad" data-pareja="artefactual">Vestimenta, accesorios y objetos</button>
+          <button class="respuesta-actividad" data-pareja="kinesica">Gestos, posturas y mirada</button>
+          <button class="respuesta-actividad" data-pareja="proxemica">Uso del espacio y la distancia</button>
+        </div>
+        <svg class="lineas-relacion" aria-hidden="true"></svg>
+      </div>
+      <p class="actividad-status" data-estado></p>
+    </div>
+
+    <div class="actividad revela">
+      <h3>6 · Operadores de búsqueda</h3>
+      <p class="actividad-intro">Unidad 3 · ¿Qué operador necesitas en cada caso?</p>
+      <div class="funcion-grupo" data-funciones>
+        <div class="funcion-item" data-correcta="and">
+          <p class="vf-enunciado">Quiero artículos que hablen de «auditoría» y también de «pymes».</p>
+          <div class="vf-botones"><button class="vf-opcion" data-respuesta="and">AND</button><button class="vf-opcion" data-respuesta="or">OR</button><button class="vf-opcion" data-respuesta="not">NOT</button><button class="vf-opcion" data-respuesta="comillas">" "</button></div>
+        </div>
+        <div class="funcion-item" data-correcta="or">
+          <p class="vf-enunciado">Quiero incluir los sinónimos «contabilidad» o «accounting».</p>
+          <div class="vf-botones"><button class="vf-opcion" data-respuesta="and">AND</button><button class="vf-opcion" data-respuesta="or">OR</button><button class="vf-opcion" data-respuesta="not">NOT</button><button class="vf-opcion" data-respuesta="comillas">" "</button></div>
+        </div>
+        <div class="funcion-item" data-correcta="comillas">
+          <p class="vf-enunciado">Necesito la frase exacta «control interno».</p>
+          <div class="vf-botones"><button class="vf-opcion" data-respuesta="and">AND</button><button class="vf-opcion" data-respuesta="or">OR</button><button class="vf-opcion" data-respuesta="not">NOT</button><button class="vf-opcion" data-respuesta="comillas">" "</button></div>
+        </div>
+        <div class="funcion-item" data-correcta="not">
+          <p class="vf-enunciado">Quiero excluir los resultados sobre «bancos».</p>
+          <div class="vf-botones"><button class="vf-opcion" data-respuesta="and">AND</button><button class="vf-opcion" data-respuesta="or">OR</button><button class="vf-opcion" data-respuesta="not">NOT</button><button class="vf-opcion" data-respuesta="comillas">" "</button></div>
+        </div>
+      </div>
+      <p class="actividad-status" data-estado></p>
+    </div>
+
+    <div class="actividad revela">
+      <h3>7 · ¿Qué herramienta usarías?</h3>
+      <p class="actividad-intro">Unidad 4 · Elige la herramienta más adecuada para cada tarea.</p>
+      <div class="funcion-grupo" data-funciones>
+        <div class="funcion-item" data-correcta="canva">
+          <p class="vf-enunciado">Diseñar una presentación atractiva a partir de una plantilla.</p>
+          <div class="vf-botones"><button class="vf-opcion" data-respuesta="word">Word</button><button class="vf-opcion" data-respuesta="canva">Canva</button><button class="vf-opcion" data-respuesta="prezi">Prezi</button><button class="vf-opcion" data-respuesta="drive">Google Drive</button></div>
+        </div>
+        <div class="funcion-item" data-correcta="word">
+          <p class="vf-enunciado">Redactar un informe de auditoría con índice automático y referencias APA.</p>
+          <div class="vf-botones"><button class="vf-opcion" data-respuesta="word">Word</button><button class="vf-opcion" data-respuesta="canva">Canva</button><button class="vf-opcion" data-respuesta="prezi">Prezi</button><button class="vf-opcion" data-respuesta="drive">Google Drive</button></div>
+        </div>
+        <div class="funcion-item" data-correcta="prezi">
+          <p class="vf-enunciado">Hacer una presentación no lineal con efecto de zoom entre ideas.</p>
+          <div class="vf-botones"><button class="vf-opcion" data-respuesta="word">Word</button><button class="vf-opcion" data-respuesta="canva">Canva</button><button class="vf-opcion" data-respuesta="prezi">Prezi</button><button class="vf-opcion" data-respuesta="drive">Google Drive</button></div>
+        </div>
+        <div class="funcion-item" data-correcta="drive">
+          <p class="vf-enunciado">Editar al mismo tiempo un documento con todo el grupo.</p>
+          <div class="vf-botones"><button class="vf-opcion" data-respuesta="word">Word</button><button class="vf-opcion" data-respuesta="canva">Canva</button><button class="vf-opcion" data-respuesta="prezi">Prezi</button><button class="vf-opcion" data-respuesta="drive">Google Drive</button></div>
+        </div>
+      </div>
+      <p class="actividad-status" data-estado></p>
+    </div>
   </section>
 
   <section id="galeria">
@@ -606,6 +1630,10 @@
       <div class="placa"><span class="marca">Trabajo en equipo</span><p>Una comunicación clara facilita la organización entre compañeros.</p></div>
       <div class="placa"><span class="marca">Comunicación académica</span><p>Compartir conocimientos y presentar ideas dentro del aula.</p></div>
       <div class="placa"><span class="marca">Comunidad universitaria</span><p>Estudiantes que aprenden a expresarse con claridad y respeto.</p></div>
+      <div class="placa"><span class="marca">Redacción</span><p>Resumir, parafrasear y argumentar para escribir textos académicos propios.</p></div>
+      <div class="placa"><span class="marca">La voz</span><p>Tono, ritmo y pausas que dan vida y claridad a una exposición.</p></div>
+      <div class="placa"><span class="marca">Investigación</span><p>Buscar en bases de datos científicas para sustentar cada idea.</p></div>
+      <div class="placa"><span class="marca">Herramientas digitales</span><p>Documentos, presentaciones e IA al servicio de la comunicación.</p></div>
     </div>
   </section>
 
@@ -613,6 +1641,7 @@
     <p class="kicker revela">Cierre</p>
     <h2 class="titulo revela">Conclusión</h2>
     <p>La comunicación y el lenguaje son elementos fundamentales para la vida personal, académica y profesional. Conocer los elementos de la comunicación, las funciones del lenguaje, la gramática y los tipos de lenguaje permite desarrollar mejores habilidades comunicativas y expresar las ideas de manera más clara y organizada.</p>
+    <p>A lo largo de las cuatro unidades, la comunicación se amplía: de la palabra oral y escrita a la redacción académica; del cuerpo y la voz a la comunicación no verbal; de la búsqueda de información confiable en bases de datos científicas al uso de procesadores de texto, presentaciones, trabajo colaborativo e inteligencia artificial. Todas estas herramientas cumplen un mismo propósito: comunicar mejor para interactuar en la sociedad.</p>
     <p class="sub" style="margin-top:34px;">Reflexión personal</p>
     <p>Durante el desarrollo de esta unidad comprendí que comunicarnos correctamente no significa solamente hablar, sino también saber escuchar, interpretar mensajes y utilizar diferentes formas de expresión. Estos conocimientos son importantes para mi formación universitaria y serán útiles en mi futura vida profesional, para relacionarme adecuadamente con compañeros, clientes y otras personas.</p>
   </section>
@@ -629,6 +1658,8 @@
 <footer id="fuentes">
   <div class="wrap">
     <p>Bibliografía: Real Academia Española, <a href="https://www.rae.es/" target="_blank" rel="noopener">rae.es</a> · Material académico de la asignatura de Comunicación · Universidad Técnica de Ambato, <a href="https://www.uta.edu.ec/" target="_blank" rel="noopener">uta.edu.ec</a></p>
+    <p>Cassany, D. (1993). <em>La cocina de la escritura</em>. Anagrama · Davis, F. (1976). <em>La comunicación no verbal</em>. Alianza · Knapp, M. L. (1982). <em>La comunicación no verbal: el cuerpo y el entorno</em>. Paidós · Hall, E. T. (1972). <em>La dimensión oculta</em>. Siglo XXI · American Psychological Association (2020). <em>Manual de publicaciones</em> (7.ª ed.)</p>
+    <p>Bases de datos: <a href="https://scholar.google.com/" target="_blank" rel="noopener">Google Académico</a> · <a href="https://www.latindex.org/" target="_blank" rel="noopener">Latindex</a> · <a href="https://scielo.org/es/" target="_blank" rel="noopener">SciELO</a> · <a href="https://www.scopus.com/" target="_blank" rel="noopener">Scopus</a> · Herramientas: <a href="https://support.microsoft.com/es-es/microsoft-365" target="_blank" rel="noopener">Soporte de Microsoft 365</a> · <a href="https://support.google.com/docs/?hl=es" target="_blank" rel="noopener">Ayuda de Google Docs</a> · Videos educativos de YouTube citados en cada tema.</p>
   </div>
 </footer>
 
@@ -647,7 +1678,8 @@
   const secObserver = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
       if(entry.isIntersecting){
-        links.forEach(l => l.classList.toggle('active', l.getAttribute('href') === '#' + entry.target.id));
+        const destino = entry.target.dataset.unidad || entry.target.id;
+        links.forEach(l => l.classList.toggle('active', l.getAttribute('href') === '#' + destino));
       }
     });
   }, {rootMargin:'-45% 0px -50% 0px'});
